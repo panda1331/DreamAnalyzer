@@ -1,0 +1,6 @@
+@DreamAnalyzer2.Server_HostAddress = http://localhost:5073
+
+GET {{DreamAnalyzer2.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

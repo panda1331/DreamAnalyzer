@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="DreamAnalyzer2.Application/DreamAnalyzer2.Application.csproj" />
+  <Project Path="dreamanalyzer2.client/dreamanalyzer2.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="DreamAnalyzer2.Domain/DreamAnalyzer2.Domain.csproj" />
+  <Project Path="DreamAnalyzer2.Infrastructure/DreamAnalyzer2.Infrastructure.csproj" />
+  <Project Path="DreamAnalyzer2.Server/DreamAnalyzer2.Server.csproj" />
+</Solution>
