@@ -4,9 +4,8 @@ using System.Text;
 
 namespace DreamAnalyzer2.Domain.Entities
 {
-    public class Dream
+    public class Dream : Entity
     {
-        public Guid Id { get; private set; }
         public Guid UserId { get; private set; }
         public string Title { get; private set; } = string.Empty;
         public string Content { get; private set; } = string.Empty;
@@ -21,7 +20,6 @@ namespace DreamAnalyzer2.Domain.Entities
                         string content,
                         DateTime dreamdate)
         {
-            Id = Guid.NewGuid();
             UserId = userId;
             Title = title;
             Content = content;

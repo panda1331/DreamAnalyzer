@@ -6,21 +6,18 @@ using System.Text;
 
 namespace DreamAnalyzer2.Domain.Entities
 {
-    public class DreamAnalysis
+    public class DreamAnalysis : Entity
     {
-        public Guid Id { get; private set; }
         public Guid DreamId { get; private set; }
         public string Interpretation { get; private set; } = string.Empty;
         public Mood Mood { get; private set; }
 
-        public Dream Dream { get; private set; }
         private readonly List<DreamSymbol> _symbols = new();
         public IReadOnlyCollection<DreamSymbol> Symbols => _symbols.AsReadOnly();
 
         protected DreamAnalysis() { }
         public DreamAnalysis(Guid dreamId, string interpretation, Mood mood)
         {
-            Id = Guid.NewGuid();
             DreamId = dreamId;
             Interpretation = interpretation;
             Mood = mood ?? throw new ArgumentNullException(nameof(mood));
