@@ -7,4 +7,5 @@
   <Project Path="DreamAnalyzer2.Domain/DreamAnalyzer2.Domain.csproj" />
   <Project Path="DreamAnalyzer2.Infrastructure/DreamAnalyzer2.Infrastructure.csproj" />
   <Project Path="DreamAnalyzer2.Server/DreamAnalyzer2.Server.csproj" />
+  <Project Path="DreamAnalyzer2.Shared/DreamAnalyzer2.Shared.csproj" Id="a869929d-7b70-4fc2-95f5-3c974abc84eb" />
 </Solution>

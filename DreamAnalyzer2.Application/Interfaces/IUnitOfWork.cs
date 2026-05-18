@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DreamAnalyzer2.Application.Interfaces
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -1,5 +1,9 @@
-﻿using DreamAnalyzer2.Domain.Interfaces;
+﻿using DreamAnalyzer2.Application.Interfaces;
+using DreamAnalyzer2.Application.Interfaces.Security;
+using DreamAnalyzer2.Domain.Interfaces;
 using DreamAnalyzer2.Infrastructure.Data;
+using DreamAnalyzer2.Infrastructure.Repositories;
+using DreamAnalyzer2.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,8 +17,15 @@ namespace DreamAnalyzer2.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            //scoped repositories
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDreamRepository, DreamRepository>();
+
+
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
+
 
             return services;
         } 
