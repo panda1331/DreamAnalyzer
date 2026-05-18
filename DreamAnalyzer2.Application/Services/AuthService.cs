@@ -23,11 +23,12 @@ namespace DreamAnalyzer2.Application.Services
         private readonly IPasswordHasher _passwordHasher;
         private readonly ITokenGenerator _tokenGenerator;
 
-        public AuthService(IUnitOfWork unitOfWork, IUserRepository userRepository, ITokenGenerator tokenGenerator)
+        public AuthService(IUnitOfWork unitOfWork, IUserRepository userRepository, ITokenGenerator tokenGenerator, IPasswordHasher passwordHasher)
         {
             _unitOfWork = unitOfWork;
             _userRepository = userRepository;
             _tokenGenerator = tokenGenerator;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)

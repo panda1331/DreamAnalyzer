@@ -1,4 +1,6 @@
 using DreamAnalyzer2.Application.Interfaces.Security;
+using DreamAnalyzer2.Application.Interfaces.Services;
+using DreamAnalyzer2.Application.Services;
 using DreamAnalyzer2.Infrastructure;
 using DreamAnalyzer2.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,6 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddInfrastructure(connectionString);
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -29,6 +32,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero
         };
     });
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IDreamService, DreamService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

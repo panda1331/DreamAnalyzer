@@ -24,7 +24,7 @@ namespace DreamAnalyzer2.Domain.Entities
             Title = title;
             Content = content;
             CreatedAt = DateTime.UtcNow;
-            DreamDate = dreamdate;
+            DreamDate = DateTime.SpecifyKind(dreamdate, DateTimeKind.Utc);
         }
 
         public void SetAnalysis(DreamAnalysis analysis)
@@ -37,7 +37,7 @@ namespace DreamAnalyzer2.Domain.Entities
         {
             Title = title;
             Content = content;
-            DreamDate = dreamdate;
+            DreamDate = DateTime.SpecifyKind(dreamdate, DateTimeKind.Utc);
         }
     }
 }

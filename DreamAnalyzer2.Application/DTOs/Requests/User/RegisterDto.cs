@@ -17,7 +17,7 @@ namespace DreamAnalyzer2.Application.DTOs.Requests.User
         
         [Required(ErrorMessage = "Password is required")]
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters long")]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)+.", ErrorMessage ="Password must have at least 1 uppercase letter and 1 digit")]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d).+$", ErrorMessage ="Password must have at least 1 uppercase letter and 1 digit")]
         public string Password { get; set; } = string.Empty;
     }
 }
