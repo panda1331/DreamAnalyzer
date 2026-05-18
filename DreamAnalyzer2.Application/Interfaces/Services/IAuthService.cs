@@ -1,4 +1,4 @@
-﻿using DreamAnalyzer2.Application.DTOs.Requests;
+﻿using DreamAnalyzer2.Application.DTOs.Requests.User;
 using DreamAnalyzer2.Application.DTOs.Responses;
 using System;
 using System.Collections.Generic;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DreamAnalyzer2.Application.DTOs.Requests
+namespace DreamAnalyzer2.Application.DTOs.Requests.User
 {
     public class LoginDto
     {

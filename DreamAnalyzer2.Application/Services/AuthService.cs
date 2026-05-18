@@ -1,4 +1,4 @@
-﻿using DreamAnalyzer2.Application.DTOs.Requests;
+﻿using DreamAnalyzer2.Application.DTOs.Requests.User;
 using DreamAnalyzer2.Application.DTOs.Responses;
 using DreamAnalyzer2.Application.Interfaces;
 using DreamAnalyzer2.Application.Interfaces.Security;
@@ -67,13 +67,6 @@ namespace DreamAnalyzer2.Application.Services
                 Token = token,
                 Username = user.Username,
             };
-        }
-
-        private bool IsSuitablePassword(string password)
-        {
-            var hasUpper = password.Any(char.IsUpper);
-            var hasDigit = password.Any(char.IsDigit);
-            return hasUpper && hasDigit && password.Length >= 6;
         }
     }
 }

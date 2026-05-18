@@ -32,5 +32,12 @@ namespace DreamAnalyzer2.Domain.Entities
             if (analysis == null) throw new ArgumentNullException(nameof(analysis));
             Analysis = analysis;
         }
+
+        public void Update(string title, string content,  DateTime dreamdate)
+        {
+            Title = title;
+            Content = content;
+            DreamDate = dreamdate;
+        }
     }
 }
