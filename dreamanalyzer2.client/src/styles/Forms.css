@@ -1,0 +1,37 @@
+.submitBtn {
+    width: fit-content;
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputElement {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+input {
+    width: 30%;
+}
+
+.input-field {
+    font-size: 20px;
+}
+
+.formStyle {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 15px;
+    padding: 15px;
+}
+
+.formStyle a {
+    display: block;
+    text-align: start;
+    font-size: 15px;
+}
+

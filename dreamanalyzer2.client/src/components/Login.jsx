@@ -1,28 +1,29 @@
 import { useState } from "react";
-import "../styles/Login.css";
+import { Link } from 'react-router-dom';
+import "../styles/Forms.css";
 
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    function onChangeEmail(e) {
-        setEmail(e.target.value);
-    }
-    function onChangePassword(e) {
-        setPassword(e.target.value);
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        console.log({ email, password });
+    }
     return (
-        <div className="login-form">
-            <div>
+        <form className="formStyle" onSubmit={ handleSubmit }>
+            <div className="inputElement">
                 <label htmlFor="emailInput" >Email: </label>
-                <input id="emailInput" className="input-field" type="text" value={email} onChange={onChangeEmail} />
+                <input id="emailInput" className="input-field" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div>
+            <div className="inputElement">
                 <label htmlFor="passwordInput">Password: </label>
-                <input id="passwordInput" className="input-field" type="password" value={password} onChange={onChangePassword} />
+                <input id="passwordInput" className="input-field" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-        </div>
+            <button className="submitBtn" type="submit">Login</button>
+            <Link to="/register"><p>Don't have an account? Click here to register</p></Link> 
+        </form>
     )
 }
 
