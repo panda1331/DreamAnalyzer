@@ -16,3 +16,4 @@ namespace DreamAnalyzer2.Application.DTOs.Requests.User
         public string Password { get; set; } = string.Empty;
     }
 }
+ 

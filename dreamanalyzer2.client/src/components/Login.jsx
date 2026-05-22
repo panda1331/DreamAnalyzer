@@ -8,7 +8,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // тоже отправка на контроллер
+
         console.log({ email, password });
     }
     return (
