@@ -1,0 +1,19 @@
+body {
+}
+
+.header {
+    display: flex;
+    justify-content:center;
+    align-content:space-between;
+    padding: 10px;
+}
+
+.navigation {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-button {
+    cursor: pointer;
+}

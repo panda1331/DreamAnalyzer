@@ -1,0 +1,11 @@
+.login-form {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 15px;
+}
+
+.input-field {
+    font-size: 20px;
+}
