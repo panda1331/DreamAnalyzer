@@ -6,8 +6,26 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const response = await fetch("/api/authentication/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem('token', data.data.token);
+            window.location.href = '/dreams';
+        }
+        else {
+            alert(data.message || 'Login failed');
+        }
 
         console.log({ email, password });
     }
@@ -15,11 +33,11 @@ function Login() {
         <form className="formStyle" onSubmit={ handleSubmit }>
             <div className="inputElement">
                 <label htmlFor="emailInput" >Email: </label>
-                <input id="emailInput" className="input-field" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input required="true" id="emailInput"type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="inputElement">
                 <label htmlFor="passwordInput">Password: </label>
-                <input id="passwordInput" className="input-field" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input required="true" id="passwordInput"type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button className="submitBtn" type="submit">Login</button>
             <Link to="/register"><p>Don't have an account? Click here to register</p></Link> 

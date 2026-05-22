@@ -14,11 +14,11 @@
 
 input {
     width: 30%;
-}
-
-.input-field {
-    font-size: 20px;
-}
+    background-color: #122652;
+    border-color: #122652;
+    font-size: 17px;
+    background-color: #001649;
+} 
 
 .formStyle {
     text-align: center;

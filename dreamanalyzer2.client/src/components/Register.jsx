@@ -17,15 +17,15 @@ function Register() {
             <form className="formStyle" onSubmit={ handleSubmit }>
                 <div className="inputElement">
                     <label htmlFor="username">Username: </label>
-                    <input id="username" type="text" value={username} onChange={ (e) => setUsername(e.target.value) } />
+                    <input required="true" id="username" type="text" value={username} onChange={ (e) => setUsername(e.target.value) } />
                 </div>
                 <div className="inputElement">
                     <label htmlFor="email">Email: </label>
-                    <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input required="true" id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="inputElement">
                     <label htmlFor="password">Password: </label>
-                    <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input required="true" id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button type="submit" className="submitBtn">Register</button>
             </form>
