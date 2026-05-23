@@ -9,22 +9,26 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("/api/authentication/login", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
+        try {
+            const response = await fetch("/api/authentication/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        if (response.ok) {
-            localStorage.setItem('token', data.data.token);
-            window.location.href = '/dreams';
-        }
-        else {
-            alert(data.message || 'Login failed');
+            if (response.ok) {
+                localStorage.setItem('token', data.data.token);
+                window.location.href = '/dreams';
+            } else {
+                alert(data.message || 'Login failed');
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            alert('Unable to connect to the server');
         }
 
         console.log({ email, password });

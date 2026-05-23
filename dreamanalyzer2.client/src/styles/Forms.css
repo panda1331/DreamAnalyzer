@@ -14,10 +14,11 @@
 
 input {
     width: 30%;
-    background-color: #122652;
-    border-color: #122652;
+    background-color: #2B394D;
+    border: 1px;
+    border-radius: 6px 6px;
+    border-color: #2B394D;
     font-size: 17px;
-    background-color: #001649;
 } 
 
 .formStyle {

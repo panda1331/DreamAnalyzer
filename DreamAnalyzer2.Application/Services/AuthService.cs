@@ -35,8 +35,12 @@ namespace DreamAnalyzer2.Application.Services
         {
             var user = await _userRepository.GetByEmailAsync(loginDto.Email);
             if (user == null)
-                throw new InvalidCredentialException("Invalid email or password");
+                throw new InvalidCredentialException("No account found with this email. Please register.");
             var isCorrectPassword = _passwordHasher.VerifyPassword(loginDto.Password, user.PasswordHash);
+
+            if (!isCorrectPassword)
+                throw new InvalidCredentialException("Wrong password. Please try again.");
+
             var token = _tokenGenerator.GenerateToken(user.Id, user.Email);
 
             return new AuthResponseDto

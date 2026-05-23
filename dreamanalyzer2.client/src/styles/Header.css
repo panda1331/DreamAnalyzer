@@ -8,7 +8,7 @@ body {
     align-content: space-between;
 }
 
-h2:hover {
+.headerTitle:hover {
     color: #7D8490;
     transition: 0.7s;
     transform: scale(1.05);

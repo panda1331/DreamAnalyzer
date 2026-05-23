@@ -5,6 +5,7 @@ using DreamAnalyzer2.Shared.Responses;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Authentication;
 
 namespace DreamAnalyzer2.Server.Controllers
 {
@@ -29,8 +30,19 @@ namespace DreamAnalyzer2.Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser(LoginDto loginDto)
         {
-            var response = await _authService.LoginAsync(loginDto);
-            return Ok(ApiResponse<AuthResponseDto>.SuccessResponse(response));
+            try
+            {
+                var response = await _authService.LoginAsync(loginDto);
+                return Ok(ApiResponse<AuthResponseDto>.SuccessResponse(response));
+            }
+            catch (InvalidCredentialException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
     }
 }
