@@ -37,7 +37,7 @@ function DreamsList() {
 
     return (
         <div>
-            <h2>Your dreams</h2>
+            <h2>My dreams</h2>
             {dreams && dreams.length === 0 && <p>You don't have dreams yet</p>}
             <div className="dreamsList">
                 {dreams && dreams.map(dream => (

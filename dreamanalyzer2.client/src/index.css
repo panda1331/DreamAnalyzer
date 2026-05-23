@@ -51,7 +51,7 @@
 
 body {
   margin: 0;
-/*  background-image: url('../public/images/sky.jpg');*/
+  background-image: url('../public/images/sky.jpg');
 }
 
 #root {

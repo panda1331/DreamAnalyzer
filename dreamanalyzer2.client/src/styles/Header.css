@@ -21,12 +21,13 @@ body {
 }
 
 button {
-    background-color: #2B394D;
-    border-color: #2B394D;
+    background-color: #819CA9;
+    border-color: #819CA9;
     font-size: 17px;
     border-radius: 8px 8px;
     border-width: 1px;
     height: 30px;
+    padding: 5px 8px;
 }
 
 #registerBtn {
@@ -35,10 +36,10 @@ button {
 }
 
 button:hover {
-    background-color: #819CA9;
-    border-color: #819CA9;
+    background-color: #6F848E;
+    border-color: #6F848E;
     transition: 0.7s;
-/*    transform: scale(1.1);*/
+    /*    transform: scale(1.1);*/
 }
 
 #registerBtn:hover {

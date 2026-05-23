@@ -11,11 +11,11 @@
     border-radius: 6px 6px;
     padding: 3px 8px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: box-shadow 0.5s ease;
+    transition: 0.4s;
 }
 
-.dreamCard:hover {
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
-    cursor: pointer;
-    background-color: #728A95;
-}
+    .dreamCard:hover {
+        box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+        cursor: pointer;
+        background-color: #6F848E;
+    }

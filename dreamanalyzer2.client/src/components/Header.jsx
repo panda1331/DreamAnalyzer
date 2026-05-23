@@ -16,6 +16,7 @@ function Header() {
                 {token ? (
                     <>
                         <Link to="/dreams"><button>My dreams</button></Link>
+                        <Link to="/profile"><button>Profile</button></Link>
                         <button onClick={ handleLogout }>Logout</button>
                     </>
                 ) : (

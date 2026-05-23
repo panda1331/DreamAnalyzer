@@ -5,9 +5,31 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // тут сделать вызов api моего конторолера
+
+        try {
+            const response = await fetch("/api/authentication/register", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('token', data.data.token);
+                window.location.href = '/profile';
+            } else {
+                alert(data.message || 'Register failed');
+            }
+        } catch (error) {
+            console.error('Network error: ', error);
+            alert('Unable to connect to the server');
+        }
+
         console.log({ username, email, password });
     };
 

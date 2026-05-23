@@ -27,7 +27,7 @@ function Login() {
                 alert(data.message || 'Login failed');
             }
         } catch (error) {
-            console.error('Network error:', error);
+            console.error('Network error: ', error);
             alert('Unable to connect to the server');
         }
 
