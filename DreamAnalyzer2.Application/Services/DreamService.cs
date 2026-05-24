@@ -55,6 +55,17 @@ namespace DreamAnalyzer2.Application.Services
             return ToResponse(dreams);
         }
 
+        public async Task<DreamResponseDto> GetDreamByIdAsync(Guid userId, Guid id)
+        {
+            var dream = await _repository.GetByIdAsync(id);
+            if (dream == null)
+                throw new NotFoundException("No such dream");
+            if (dream.UserId != userId)
+                throw new ValidationException("You can only view your own dreams");
+
+            return ToResponse(dream);
+        }
+
         public async Task<DreamResponseDto> UpdateDreamAsync(Guid userId, Guid id, UpdateDreamDto updateDreamDto)
         {
             var dream = await _repository.GetByIdAsync(id);
@@ -76,6 +87,17 @@ namespace DreamAnalyzer2.Application.Services
             };
         }
 
+        private DreamResponseDto ToResponse(Dream dream)
+        {
+            return new DreamResponseDto
+            {
+                Id = dream.Id,
+                Title = dream.Title,
+                Content = dream.Content,
+                DreamDate = dream.DreamDate,
+                CreatedAt = dream.CreatedAt,
+            };
+        }
         private List<DreamResponseDto> ToResponse(List<Dream> dreams)
         {
             return dreams.Select(dream => new DreamResponseDto

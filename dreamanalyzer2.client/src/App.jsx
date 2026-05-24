@@ -9,6 +9,9 @@ import { Routes, Route } from 'react-router-dom';
 import DreamsList from './components/DreamsList';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './components/Profile';
+import AddDream from './components/AddDream';
+import DreamDetails from './components/DreamDetails';
+import EditDream from './components/EditDream';
 
 function App() {
     return (
@@ -27,6 +30,21 @@ function App() {
                     <Route path="/dreams" element={
                         <PrivateRoute>
                             <DreamsList />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/dreams/create" element={
+                        <PrivateRoute>
+                            <AddDream />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/dreams/:id" element={
+                        <PrivateRoute>
+                            <DreamDetails/>
+                        </PrivateRoute>
+                    } />
+                    <Route path="/dreams/:id/edit" element={
+                        <PrivateRoute>
+                            <EditDream />
                         </PrivateRoute>
                     } />
                 </Routes>

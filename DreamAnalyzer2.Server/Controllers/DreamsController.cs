@@ -37,6 +37,14 @@ namespace DreamAnalyzer2.Server.Controllers
             return Ok(ApiResponse<List<DreamResponseDto>>.SuccessResponse(response));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDream(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var response = await _service.GetDreamByIdAsync(userId, id);
+            return Ok(ApiResponse<DreamResponseDto>.SuccessResponse(response));
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDream(Guid id, UpdateDreamDto updateDreamDto)
         {

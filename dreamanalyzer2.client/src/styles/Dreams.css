@@ -6,6 +6,13 @@
 }
 
 .dreamCard {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word; 
+    overflow-wrap: break-word;
+
     background-color: #819CA9;
     color: #111827;
     border-radius: 6px 6px;
@@ -14,8 +21,53 @@
     transition: 0.4s;
 }
 
-    .dreamCard:hover {
-        box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
-        cursor: pointer;
-        background-color: #6F848E;
-    }
+.dreamCard p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    flex: 1;
+}
+
+.dreamCard:hover {
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+    cursor: pointer;
+    background-color: #6F848E;
+}
+
+.dreamTitleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dreamTitleContainerCreateBtn {
+    right: 0;
+    position: absolute;
+    margin: -14.6px 0 0 0;
+}
+
+.myDreamsTitle {
+    margin: 0;
+}
+
+.detailsContainer {
+    background-color: #819CA9;
+    color: #111827;
+    border-radius: 6px 6px;
+    padding: 3px 8px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: 0.4s;
+    margin: 15px 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.buttons {
+    right: 0;
+    position: absolute;
+    display: flex;
+    gap: 20px;
+}

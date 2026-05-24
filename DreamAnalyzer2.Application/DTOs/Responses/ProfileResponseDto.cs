@@ -8,7 +8,7 @@ namespace DreamAnalyzer2.Application.DTOs.Responses
     {
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public DateTime RegistryDate { get; set; }
+        public string RegistryDate { get; set; } = string.Empty;
         public int DreamsCount { get; set; }
     }
 }

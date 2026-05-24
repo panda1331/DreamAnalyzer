@@ -1,7 +1,13 @@
+.profileContainer {
+    display: flex;
+    justify-content: center;
+}
+
 .profileInfo {
     background-color: #819CA9;
     color: #111827;
     border-radius: 6px 6px;
     padding: 3px 8px 20px;
     font-size: 18px;
+    width: 50%;
 }

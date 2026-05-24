@@ -24,13 +24,16 @@ function Profile() {
     return (
         <div>
             <h2>Profile info</h2>
-            <div className="profileInfo">
-                <p>Username: {profile.username}</p>
-                <p>Email: {profile.email}</p>
-                <p>Dreams count: {profile.dreamsCount}</p>
-                <p>Registered: {profile.registryDate}</p>
+            <div className="profileContainer">
+                <div className="profileInfo">
+                    <p>Username: {profile.username}</p>
+                    <p>Email: {profile.email}</p>
+                    <p>Dreams count: {profile.dreamsCount}</p>
+                    <p>Registered: {profile.registryDate}</p>
+                </div>
             </div>
         </div>
+        
     );
 }
 

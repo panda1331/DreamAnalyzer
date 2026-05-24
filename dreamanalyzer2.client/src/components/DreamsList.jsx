@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Dreams.css'
 function DreamsList() {
     const [dreams, setDreams] = useState(null);
@@ -12,7 +13,7 @@ function DreamsList() {
             }
 
             try {
-                const response = await fetch('/api/dreams/', {
+                const response = await fetch('/api/Dreams/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -37,14 +38,18 @@ function DreamsList() {
 
     return (
         <div>
-            <h2>My dreams</h2>
+            <div className="dreamTitleContainer">
+                <h2 className="myDreamsTitle">My dreams</h2>
+                <Link to="/dreams/create"><button className="dreamTitleContainerCreateBtn">Add dream</button></Link> 
+            </div>
+           
             {dreams && dreams.length === 0 && <p>You don't have dreams yet</p>}
             <div className="dreamsList">
                 {dreams && dreams.map(dream => (
-                    <div key={dream.id} className="dreamCard">
+                    <Link to={ `/dreams/${dream.id}` }> <div key={dream.id} className="dreamCard">
                         <h3>{dream.title}</h3>
                         <p>{dream.content}</p>
-                    </div>
+                    </div></Link>
                 ))}
             </div>
         </div>

@@ -24,6 +24,7 @@ namespace DreamAnalyzer2.Application.Services
             var user = await _userRepository.GetByIdAsync(userId);
             if (user == null)
                 throw new NotFoundException("User not found");
+            var createdDate = user.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss");
 
             var dreams = await _dreamsRepository.GetByUserIdAsync(userId);
             var dreamsCount = dreams.Count();
@@ -32,7 +33,7 @@ namespace DreamAnalyzer2.Application.Services
             {
                 Username = user.Username,
                 Email = user.Email,
-                RegistryDate = user.CreatedAt,
+                RegistryDate = createdDate,
                 DreamsCount = dreamsCount,
             };
         }
