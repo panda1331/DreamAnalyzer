@@ -124,3 +124,7 @@ main {
     flex-direction: column;
     min-height: 100vh;
 }
+
+button {
+    font-size: 18px;
+}

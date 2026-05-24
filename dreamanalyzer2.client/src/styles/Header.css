@@ -23,11 +23,11 @@ body {
 button {
     background-color: #819CA9;
     border-color: #819CA9;
-    font-size: 17px;
     border-radius: 8px 8px;
     border-width: 1px;
     height: 30px;
     padding: 5px 8px;
+    text-align: center;
 }
 
 #registerBtn {

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import '../styles/Forms.css'
 
@@ -70,9 +70,10 @@ function EditDream() {
             <h2>Edit dream</h2>
             <form onSubmit={handleSubmit} className="formStyle">
                 <input className="inputElement" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <textarea className="inputElement" type="text" value={content} onChange={(e) => setContent(e.target.value)} />
+                <textarea className="inputElement" value={content} onChange={(e) => setContent(e.target.value)} />
                 <input className="inputElement" type="date" value={dreamDate} onChange={(e) => setDreamDate(e.target.value)} />
                 <button type="submit" className="submitBtn">Edit</button>
+                <Link to='/dreams'><button type="button">Cancel</button></Link> 
             </form>
         </div>
     );
