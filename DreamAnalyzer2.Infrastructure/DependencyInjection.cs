@@ -1,5 +1,6 @@
 ﻿using DreamAnalyzer2.Application.Interfaces;
 using DreamAnalyzer2.Application.Interfaces.Security;
+using DreamAnalyzer2.Application.Strategies;
 using DreamAnalyzer2.Domain.Interfaces;
 using DreamAnalyzer2.Infrastructure.Data;
 using DreamAnalyzer2.Infrastructure.Repositories;
@@ -21,11 +22,14 @@ namespace DreamAnalyzer2.Infrastructure
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDreamRepository, DreamRepository>();
-
+            services.AddScoped<ISymbolRepository, SymbolRepository>();
 
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
 
+            services.AddScoped<IStrategyFactory, StrategyFactory>();
+            services.AddScoped<SymbolStrategy>();
+            //add strategies
 
             return services;
         } 

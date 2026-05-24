@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DreamAnalyzer2.Application.Interfaces
 {
-    internal interface IStrategyFactory
+    public interface IStrategyFactory
     {
+        IAnalysisStrategy GetStrategy(string strategyName);
     }
 }
