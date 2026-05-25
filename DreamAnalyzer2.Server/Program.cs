@@ -36,6 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IDreamService, DreamService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAnalysisService, AnalysisService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

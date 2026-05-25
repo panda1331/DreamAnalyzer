@@ -33,7 +33,10 @@ namespace DreamAnalyzer2.Infrastructure.Repositories
 
         public async Task<Dream?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Dreams.FindAsync(id, cancellationToken);
+            return await _context.Dreams
+                .Include(d => d.Analysis)
+                    .ThenInclude(a => a.Symbols)
+                .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
         }
 
         public async Task<List<Dream>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default)

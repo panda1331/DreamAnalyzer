@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="StemmersNet.Standard" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DreamAnalyzer2.Domain\DreamAnalyzer2.Domain.csproj" />
     <ProjectReference Include="..\DreamAnalyzer2.Shared\DreamAnalyzer2.Shared.csproj" />
   </ItemGroup>

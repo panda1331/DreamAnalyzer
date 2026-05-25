@@ -33,7 +33,10 @@ namespace DreamAnalyzer2.Infrastructure.Data
             modelBuilder.Entity<DreamAnalysis>()
                 .HasMany(a => a.Symbols)
                 .WithMany()
-                .UsingEntity(s => s.ToTable("AnalysisSymbols"));
+                .UsingEntity(s => s
+                    .ToTable("AnalysisSymbols")
+                    .Property("DreamAnalysisId")
+                    .HasColumnName("DreamAnalysisId"));
 
             modelBuilder.Entity<DreamAnalysis>()
                 .OwnsOne(a => a.Mood, mood =>

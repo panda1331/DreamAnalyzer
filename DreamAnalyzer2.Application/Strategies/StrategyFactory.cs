@@ -20,7 +20,7 @@ namespace DreamAnalyzer2.Application.Strategies
         {
             return strategyName.ToLower() switch
             {
-                "symbols" => new SymbolStrategy(),
+                "symbols" => new SymbolStrategy(_symbolRepository),
                 //add strategies...
                 _ => throw new ArgumentException($"Unknown strategy: {strategyName}")
             };

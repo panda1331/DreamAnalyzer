@@ -31,5 +31,15 @@ namespace DreamAnalyzer2.Domain.Entities
                 _symbols.Add(symbol);
             }
         }
+
+        public void Update(string interpretation, Mood mood)
+        {
+            Interpretation = interpretation;
+            Mood = mood;
+        }
+        public void ClearSymbols()
+        {
+            _symbols.Clear();
+        }
     }
 }

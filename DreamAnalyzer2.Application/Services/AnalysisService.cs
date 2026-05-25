@@ -14,13 +14,15 @@ namespace DreamAnalyzer2.Application.Services
     {
         private readonly ISymbolRepository _symbolRepository;
         private readonly IDreamRepository _dreamRepository;
+        private readonly IAnalysisRepository _analysisRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AnalysisService(ISymbolRepository symbolRepository, IDreamRepository dreamRepository, IUnitOfWork unitOfWork)
+        public AnalysisService(ISymbolRepository symbolRepository, IDreamRepository dreamRepository, IUnitOfWork unitOfWork, IAnalysisRepository analysisRepository)
         {
             _symbolRepository = symbolRepository;
             _dreamRepository = dreamRepository;
             _unitOfWork = unitOfWork;
+            _analysisRepository = analysisRepository;
         }
 
         public async Task<AnalysisResponseDto> AnalyseDreamAsync(Guid userId, Guid id, IAnalysisStrategy strategy)
@@ -32,7 +34,25 @@ namespace DreamAnalyzer2.Application.Services
                 throw new ValidationException("You can analyze only your dreams");
 
             var strategyResult = await strategy.AnalyzeAsync(dream.Content);
-            var analysis = new DreamAnalysis(dream.Id, strategyResult.Interpretation, strategyResult.Mood);
+
+            DreamAnalysis analysis;
+            if (dream.Analysis != null)
+            {
+                analysis = dream.Analysis;
+                analysis.Update(strategyResult.Interpretation, strategyResult.Mood);
+                analysis.ClearSymbols();
+            }
+            else
+            {
+                analysis = new DreamAnalysis(dream.Id, strategyResult.Interpretation, strategyResult.Mood);
+                await _analysisRepository.AddAsync(analysis);
+                dream.SetAnalysis(analysis);
+            }
+
+
+            //await _analysisRepository.AddAsync(analysis);
+            //dream.SetAnalysis(analysis);
+            await _unitOfWork.SaveChangesAsync();
 
             foreach (var symbolName in strategyResult.Symbols)
             {
@@ -40,9 +60,8 @@ namespace DreamAnalyzer2.Application.Services
                 if (symbol != null)
                     analysis.AddSymbol(symbol);
             }
-            dream.SetAnalysis(analysis);
-            _dreamRepository.Update(dream);
             await _unitOfWork.SaveChangesAsync();
+
             return new AnalysisResponseDto
             {
                 Title = dream.Title,

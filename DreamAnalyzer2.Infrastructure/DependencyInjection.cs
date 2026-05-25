@@ -23,6 +23,7 @@ namespace DreamAnalyzer2.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDreamRepository, DreamRepository>();
             services.AddScoped<ISymbolRepository, SymbolRepository>();
+            services.AddScoped<IAnalysisRepository, AnalysisRepository>();
 
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
