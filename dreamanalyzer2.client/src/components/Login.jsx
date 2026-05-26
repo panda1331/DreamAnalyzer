@@ -40,11 +40,11 @@ function Login() {
                 <input required="true" id="emailInput"type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="inputElement">
-                <label htmlFor="passwordInput">Password: </label>
+                <label htmlFor="passwordInput">Пароль: </label>
                 <input required="true" id="passwordInput"type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button className="submitBtn" type="submit">Login</button>
-            <Link to="/register"><p>Don't have an account? Click here to register</p></Link> 
+            <Link to="/register"><p>У вас нету аккаунта? Нажмите здесь, чтобы зарегистрироваться</p></Link> 
         </form>
     )
 }

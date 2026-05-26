@@ -1,13 +1,11 @@
-﻿using DreamAnalyzer2.Application.DTOs.Requests.Dreams;
+﻿using DreamAnalyzer2.Application.Builders;
+using DreamAnalyzer2.Application.DTOs.Requests.Dreams;
 using DreamAnalyzer2.Application.DTOs.Responses;
 using DreamAnalyzer2.Application.Interfaces;
 using DreamAnalyzer2.Application.Interfaces.Services;
 using DreamAnalyzer2.Domain.Entities;
 using DreamAnalyzer2.Domain.Interfaces;
 using DreamAnalyzer2.Shared.Shared;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DreamAnalyzer2.Application.Services
 {
@@ -24,7 +22,13 @@ namespace DreamAnalyzer2.Application.Services
 
         public async Task<DreamResponseDto> CreateDreamAsync(Guid userId, CreateDreamDto createDreamDto)
         {
-            var dream = new Dream(userId, createDreamDto.Title, createDreamDto.Content, createDreamDto.DreamDate);
+            var dream = DreamBuilder.Create()
+                .ForUser(userId)
+                .WithTitle(createDreamDto.Title)
+                .WithContent(createDreamDto.Content)
+                .WithDate(createDreamDto.DreamDate)
+                .Build();
+
             await _repository.AddAsync(dream);
             await _unitOfWork.SaveChangesAsync();
             return new DreamResponseDto
@@ -52,7 +56,10 @@ namespace DreamAnalyzer2.Application.Services
         public async Task<List<DreamResponseDto>> GetAllDreamsByUserIdAsync(Guid userId)
         {
             var dreams = await _repository.GetByUserIdAsync(userId);
-            return ToResponse(dreams);
+            var responses = new List<DreamResponseDto>();
+            foreach (var dream in dreams)
+                responses.Add(ToResponse(dream));
+            return responses;
         }
 
         public async Task<DreamResponseDto> GetDreamByIdAsync(Guid userId, Guid id)
@@ -96,18 +103,13 @@ namespace DreamAnalyzer2.Application.Services
                 Content = dream.Content,
                 DreamDate = dream.DreamDate,
                 CreatedAt = dream.CreatedAt,
+                Mood = dream.Analysis != null ? new MoodDto
+                {
+                    Name = dream.Analysis.Mood.Name,
+                    ColorHex = dream.Analysis.Mood.ColorHex,
+                    Description = dream.Analysis.Mood.Description,
+                } : null
             };
-        }
-        private List<DreamResponseDto> ToResponse(List<Dream> dreams)
-        {
-            return dreams.Select(dream => new DreamResponseDto
-            {
-                Id = dream.Id,
-                Title = dream.Title,
-                Content= dream.Content,
-                CreatedAt= dream.CreatedAt,
-                DreamDate= dream.DreamDate
-            }).ToList();
         }
     }
 }

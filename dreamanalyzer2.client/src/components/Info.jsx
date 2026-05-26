@@ -1,8 +1,8 @@
 function Info() {
     return (
         <div>
-            <h3>Unlock the Secrets of Your Dreams</h3>
-            <p>Your dreams are the key to your subconscious. Write, analyze, and understand yourself deeper.</p>
+            <h3>Раскройте тайны своих снов</h3>
+            <p>Ваши сны — это ключ к подсознанию. Записывайте, анализируйте и понимайте себя глубже.</p>
         </div>
     )
 }

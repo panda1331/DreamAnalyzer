@@ -6,6 +6,6 @@ namespace DreamAnalyzer2.Application.Interfaces
 {
     public interface IStrategyFactory
     {
-        IAnalysisStrategy GetStrategy(string strategyName);
+        IAnalysisStrategy GetStrategy(string strategyName, string? book = null);
     }
 }

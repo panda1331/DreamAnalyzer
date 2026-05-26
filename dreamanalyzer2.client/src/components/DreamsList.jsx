@@ -24,6 +24,8 @@ function DreamsList() {
 
                 if (response.ok) {
                     setDreams(data.data);
+                    console.log('Dreams from server:', data.data);
+
                 } else {
                     console.error('Error', data.message);
                 }
@@ -39,16 +41,21 @@ function DreamsList() {
     return (
         <div>
             <div className="dreamTitleContainer">
-                <h2 className="myDreamsTitle">My dreams</h2>
-                <Link to="/dreams/create"><button className="dreamTitleContainerCreateBtn">Add dream</button></Link> 
+                <h2 className="myDreamsTitle">Мои сны</h2>
+                <Link to="/dreams/create"><button className="dreamTitleContainerCreateBtn">Добавить сон</button></Link> 
             </div>
            
-            {dreams && dreams.length === 0 && <p>You don't have dreams yet</p>}
+            {dreams && dreams.length === 0 && <p>У вас пока нет снов</p>}
             <div className="dreamsList">
                 {dreams && dreams.map(dream => (
-                    <Link to={ `/dreams/${dream.id}` }> <div key={dream.id} className="dreamCard">
-                        <h3>{dream.title}</h3>
+                    <Link to={`/dreams/${dream.id}`}> <div key={dream.id} className="dreamCard">
+                        <div className="dreamCardContainerHeader">
+                            
+                            <h3>{dream.title}</h3>
+                        </div>
+                        
                         <p>{dream.content}</p>
+                        
                     </div></Link>
                 ))}
             </div>

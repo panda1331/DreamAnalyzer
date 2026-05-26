@@ -64,7 +64,9 @@ namespace DreamAnalyzer2.Application.Strategies
             {
                 Title = "",
                 Interpretation = interpretation,
-                Mood = mood,
+                MoodName = mood.Name,
+                MoodDescription = mood.Description,
+                MoodColor = mood.ColorHex,
                 Strategy = "symbols",
                 Symbols = foundSymbolsNames
             };

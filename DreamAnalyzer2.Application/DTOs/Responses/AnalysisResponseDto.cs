@@ -9,7 +9,9 @@ namespace DreamAnalyzer2.Application.DTOs.Responses
     {
         public string Title { get; set; } = string.Empty;
         public string Interpretation { get; set; } = string.Empty;
-        public Mood Mood { get; set; }
+        public string MoodName { get; set; } = string.Empty;
+        public string MoodColor { get; set; } = string.Empty;
+        public string MoodDescription {  get; set; } = string.Empty;
         public List<string> Symbols { get; set; } = new();
         public string Strategy { get; set; } = string.Empty;
     }

@@ -35,10 +35,10 @@ function Register() {
 
     return (
         <div>
-            <p>Hi, welcome to our analyzer! You're new here? Register below and find out all the mysteries of your dreams!</p>
+            <p>Приветствуем в нашем анализаторе снов! Вы здесь впервые? Зарегистрируйтесь и узнайте все тайны своих сновидений!</p>
             <form className="formStyle" onSubmit={ handleSubmit }>
                 <div className="inputElement">
-                    <label htmlFor="username">Username: </label>
+                    <label htmlFor="username">Имя пользователя: </label>
                     <input required="true" id="username" type="text" value={username} onChange={ (e) => setUsername(e.target.value) } />
                 </div>
                 <div className="inputElement">
@@ -46,7 +46,7 @@ function Register() {
                     <input required="true" id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="inputElement">
-                    <label htmlFor="password">Password: </label>
+                    <label htmlFor="password">Пароль: </label>
                     <input required="true" id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button type="submit" className="submitBtn">Register</button>

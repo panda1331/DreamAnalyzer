@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,6 +8,7 @@
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:4050</SpaProxyServerUrl>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <UserSecretsId>131614d5-bd54-4e5b-b9f4-d5b324b30d95</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

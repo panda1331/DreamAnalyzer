@@ -18,9 +18,9 @@ function Header() {
             <nav className="navigation">
                 {token ? (
                     <>
-                        <Link to="/dreams"><button>My dreams</button></Link>
-                        <Link to="/profile"><button>Profile</button></Link>
-                        <button onClick={() => setShowModal(true)}>Logout</button>
+                        <Link to="/dreams"><button>Мои сны</button></Link>
+                        <Link to="/profile"><button>Профиль</button></Link>
+                        <button onClick={() => setShowModal(true)}>Выйти</button>
                         <ConfirmModal
                             isOpen={showModal}
                             onConfirm={ handleLogout }
@@ -29,8 +29,8 @@ function Header() {
                     </>
                 ) : (
                     <>
-                        <Link to="/login"><button>Login</button></Link>
-                        <Link to="/register" ><button id="registerBtn">Register</button></Link>
+                        <Link to="/login"><button>Войти</button></Link>
+                        <Link to="/register" ><button id="registerBtn">Зарегистрироваться</button></Link>
                     </>
                 )}
             </nav>

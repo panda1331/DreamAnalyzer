@@ -36,21 +36,21 @@ function AddDream() {
 
     return (
         <div>
-            <h2>Write your dream</h2>
+            <h2>Опиши свой сон:</h2>
             <form className="formStyle" onSubmit={ handleSubmit }>
                 <div className="inputElement">
-                    <label>Title: </label>
+                    <label>Название: </label>
                     <input type="text" value={title} onChange={ (e) => setTitle(e.target.value) } />
                 </div>
                 <div className="inputElement">
-                    <label>Description: </label>
+                    <label>Описание: </label>
                     <textarea type="text" value={content} onChange={(e) => setContent(e.target.value)} />
                 </div>
                 <div className="inputElement">
-                    <label>Dream date: </label>
+                    <label>Дата сна: </label>
                     <input type="date" value={dreamDate} onChange={(e) => setDreamDate(e.target.value)} />
                 </div>
-                <button type="submit" className="submitBtn">Add</button>
+                <button type="submit" className="submitBtn">Добавить</button>
             </form>
         </div>
     );

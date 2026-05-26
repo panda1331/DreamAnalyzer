@@ -67,10 +67,10 @@ namespace DreamAnalyzer2.Server.Controllers
         }
 
         [HttpPost("{id}/analyze")]
-        public async Task<IActionResult> AnalyzeDream(Guid id, [FromQuery] string strategyType)
+        public async Task<IActionResult> AnalyzeDream(Guid id, [FromQuery] string strategyType, [FromQuery] string? book = null)
         {
             var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var strategy = _strategyFactory.GetStrategy(strategyType);
+            var strategy = _strategyFactory.GetStrategy(strategyType, book);
             var result = await _analysisService.AnalyseDreamAsync(userId, id, strategy);
             return Ok(ApiResponse<AnalysisResponseDto>.SuccessResponse(result));
         }

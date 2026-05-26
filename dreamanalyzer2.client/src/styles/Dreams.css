@@ -16,7 +16,7 @@
     background-color: #819CA9;
     color: #111827;
     border-radius: 6px 6px;
-    padding: 3px 8px 20px;
+    padding: 3px 3px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: 0.4s;
 }
@@ -70,4 +70,37 @@
     position: absolute;
     display: flex;
     gap: 20px;
+}
+
+.mood-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    transition: 0.7s;
+}
+
+.mood-dot:hover {
+    transition: 0.7s;
+    transform: scale(1.2) translateX(3px) translateY(3px);
+}
+
+.dreamCardContainerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.dreamCardContainerHeader .mood-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.strategy-tabs {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
 }

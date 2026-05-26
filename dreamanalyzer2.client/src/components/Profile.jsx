@@ -20,16 +20,15 @@ function Profile() {
 
     if (!profile) return <div>Loading...</div>
 
-
     return (
         <div>
-            <h2>Profile info</h2>
+            <h2>Личный кабинет</h2>
             <div className="profileContainer">
                 <div className="profileInfo">
-                    <p>Username: {profile.username}</p>
+                    <p>Имя пользователя: {profile.username}</p>
                     <p>Email: {profile.email}</p>
-                    <p>Dreams count: {profile.dreamsCount}</p>
-                    <p>Registered: {profile.registryDate}</p>
+                    <p>Счетчик снов: {profile.dreamsCount}</p>
+                    <p>Дата регистрации: {profile.registryDate }</p>
                 </div>
             </div>
         </div>

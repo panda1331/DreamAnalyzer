@@ -67,13 +67,13 @@ function EditDream() {
 
     return (
         <div>
-            <h2>Edit dream</h2>
+            <h2>Редактировать сон</h2>
             <form onSubmit={handleSubmit} className="formStyle">
                 <input className="inputElement" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 <textarea className="inputElement" value={content} onChange={(e) => setContent(e.target.value)} />
                 <input className="inputElement" type="date" value={dreamDate} onChange={(e) => setDreamDate(e.target.value)} />
-                <button type="submit" className="submitBtn">Edit</button>
-                <Link to='/dreams'><button type="button">Cancel</button></Link> 
+                <button type="submit" className="submitBtn">Редактировать</button>
+                <Link to='/dreams'><button type="button">Отмена</button></Link> 
             </form>
         </div>
     );

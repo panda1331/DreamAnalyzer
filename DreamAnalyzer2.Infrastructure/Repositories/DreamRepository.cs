@@ -41,7 +41,11 @@ namespace DreamAnalyzer2.Infrastructure.Repositories
 
         public async Task<List<Dream>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default)
         {
-            return await _context.Dreams.Where(d => d.UserId == userId).ToListAsync(cancellationToken);
+            return await _context.Dreams
+                .Include(d => d.Analysis)
+                    .ThenInclude(a => a.Symbols)
+                .Where(d => d.UserId == userId)
+                .ToListAsync(cancellationToken);
         }
 
         public void Update(Dream dream)

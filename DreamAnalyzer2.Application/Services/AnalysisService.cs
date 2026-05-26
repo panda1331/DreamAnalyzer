@@ -3,6 +3,7 @@ using DreamAnalyzer2.Application.Interfaces;
 using DreamAnalyzer2.Application.Interfaces.Services;
 using DreamAnalyzer2.Domain.Entities;
 using DreamAnalyzer2.Domain.Interfaces;
+using DreamAnalyzer2.Domain.ValueObjects;
 using DreamAnalyzer2.Shared.Shared;
 using System;
 using System.Collections.Generic;
@@ -33,25 +34,25 @@ namespace DreamAnalyzer2.Application.Services
             if (dream.UserId != userId)
                 throw new ValidationException("You can analyze only your dreams");
 
+            string contentToAnalyze = dream.Content;
             var strategyResult = await strategy.AnalyzeAsync(dream.Content);
+
+            var domainMood = Mood.Create(strategyResult.MoodName);
 
             DreamAnalysis analysis;
             if (dream.Analysis != null)
             {
                 analysis = dream.Analysis;
-                analysis.Update(strategyResult.Interpretation, strategyResult.Mood);
+                analysis.Update(strategyResult.Interpretation, domainMood);
                 analysis.ClearSymbols();
             }
             else
             {
-                analysis = new DreamAnalysis(dream.Id, strategyResult.Interpretation, strategyResult.Mood);
+                analysis = new DreamAnalysis(dream.Id, strategyResult.Interpretation, domainMood);
                 await _analysisRepository.AddAsync(analysis);
                 dream.SetAnalysis(analysis);
             }
 
-
-            //await _analysisRepository.AddAsync(analysis);
-            //dream.SetAnalysis(analysis);
             await _unitOfWork.SaveChangesAsync();
 
             foreach (var symbolName in strategyResult.Symbols)
@@ -66,7 +67,9 @@ namespace DreamAnalyzer2.Application.Services
             {
                 Title = dream.Title,
                 Interpretation = strategyResult.Interpretation,
-                Mood = strategyResult.Mood,
+                MoodName = strategyResult.MoodName,
+                MoodColor = strategyResult.MoodColor,
+                MoodDescription = strategyResult.MoodDescription,
                 Symbols = strategyResult.Symbols,
                 Strategy = strategyResult.Strategy,
             };
