@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import '../styles/Dreams.css'
 function DreamsList() {
     const [dreams, setDreams] = useState(null);
+    const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchDreams = async () => {
             if (!token) {
                 console.log("no token")
+                setLoading(false);
                 return;
             }
 
@@ -32,14 +34,27 @@ function DreamsList() {
             }
             catch (err) {
                 console.error('Connection error', err);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchDreams();
     }, [token]);
 
+    if (loading) {
+        return (
+            <div className="dream-container">
+                <div className="dreamTitleContainer">
+                    <h2 className="myDreamsTitle">Мои сны</h2>
+                </div>
+                <p>Загрузка снов...</p>
+            </div>
+        );
+    }
+
     return (
-        <div>
+        <div className="dreams-container" >
             <div className="dreamTitleContainer">
                 <h2 className="myDreamsTitle">Мои сны</h2>
                 <Link to="/dreams/create"><button className="dreamTitleContainerCreateBtn">Добавить сон</button></Link> 
@@ -50,12 +65,9 @@ function DreamsList() {
                 {dreams && dreams.map(dream => (
                     <Link to={`/dreams/${dream.id}`}> <div key={dream.id} className="dreamCard">
                         <div className="dreamCardContainerHeader">
-                            
                             <h3>{dream.title}</h3>
                         </div>
-                        
-                        <p>{dream.content}</p>
-                        
+                        <p className="dream-content-text">{dream.content}</p>
                     </div></Link>
                 ))}
             </div>
