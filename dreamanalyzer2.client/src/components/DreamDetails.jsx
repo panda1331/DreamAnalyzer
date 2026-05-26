@@ -15,12 +15,14 @@ function DreamDetails() {
     const [aiLoading, setAiLoading] = useState(false);
     const [aiError, setAiError] = useState(null);
     const [activeStrategy, setActiveStrategy] = useState(null);
+    const [selectedBook, setSelectedBook] = useState('miller');
 
     const strategies = [
         { id: 'freudian', label: 'Психоанализ Фрейда' },
         { id: 'jungian', label: 'Архетипы Юнга' },
         { id: 'cognitive', label: 'КПТ-анализ' },
-        { id: 'symbols', label: 'Словарь символов в бд' },
+        { id: 'symbols', label: 'Словарь символов' },
+        { id: 'dreambook', label: 'Сонник' },
     ];
 
     useEffect(() => {
@@ -47,14 +49,19 @@ function DreamDetails() {
         fetchDream();
     }, [id, token]);
 
-    const handleAnalyzeClick = async (strategyType) => {
+    const handleAnalyzeClick = async (strategyType, authorBook = selectedBook) => {
         setAiLoading(true);
         setAiError(null);
         setActiveStrategy(strategyType);
         setAnalysis(null);
 
         try {
-            const response = await fetch(`/api/Dreams/${id}/analyze?strategyType=${strategyType}`, {
+            let url = `/api/Dreams/${id}/analyze?strategyType=${strategyType}`;
+            if (strategyType === 'dreambook') {
+                url += `&book=${authorBook}`;
+            }
+
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -74,6 +81,12 @@ function DreamDetails() {
         } finally {
             setAiLoading(false);
         }
+    };
+
+    const handleBookChange = (e) => {
+        const newBook = e.target.value;
+        setSelectedBook(newBook);
+        handleAnalyzeClick('dreambook', newBook);
     };
 
     const handleDeleteClick = () => {
@@ -139,6 +152,23 @@ function DreamDetails() {
                         </button>
                     ))}
                 </div>
+
+                {activeStrategy === 'dreambook' && (
+                    <div className="book-selector-container animate-fade-in">
+                        <label htmlFor="bookSelect">Персонализированный источник: </label>
+                        <select
+                            id="bookSelect"
+                            value={selectedBook}
+                            onChange={handleBookChange}
+                            disabled={aiLoading}
+                            className="book-select-dropdown">
+
+                            <option value="miller">Сонник Миллера (Житейский)</option>
+                            <option value="vanga">Сонник Ванги (Мистический)</option>
+                            <option value="nostradamus">Сонник Нострадамуса (Пророческий)</option>
+                        </select>
+                    </div>
+                )}
 
                 {aiLoading && (
                     <div className="ai-loader">
