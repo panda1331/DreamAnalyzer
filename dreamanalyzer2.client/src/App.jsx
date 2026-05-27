@@ -12,6 +12,7 @@ import Profile from './components/Profile';
 import AddDream from './components/AddDream';
 import DreamDetails from './components/DreamDetails';
 import EditDream from './components/EditDream';
+import Sandman from './components/Sandman';
 
 function App() {
     return (
@@ -48,6 +49,7 @@ function App() {
                         </PrivateRoute>
                     } />
                 </Routes>
+                <Sandman />
             </main>
             <Footer />
         </div>

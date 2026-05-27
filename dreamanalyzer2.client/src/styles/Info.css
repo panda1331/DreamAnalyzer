@@ -1,0 +1,26 @@
+.info-text-container {
+    background-color: var(--bg-card, #1e293b);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    color: #cbd5e1;
+    line-height: 1.7; 
+    border-radius: 20px;
+}
+
+.info-text-container h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(139, 92, 246, 0.4); 
+}
+
+.info-lead {
+    color: #94a3b8; 
+    margin-bottom: 40px;
+}
+
+
+.info-text-container p {
+    margin-bottom: 20px;
+    text-align: center;
+}

@@ -1,13 +1,122 @@
 .profileContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 60vh;
 }
 
 .profileInfo {
-    background-color: #819CA9;
-    color: #111827;
-    border-radius: 6px 6px;
-    padding: 3px 8px 20px;
+    background: var(--bg-card, #1e293b);
+    color: var(--text-main, #f8fafc);
+    border-radius: 20px;
+    padding: 10px 40px;
     font-size: 18px;
-    width: 50%;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid var(--border-color, #334155);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s;
+}
+
+.profileInfo:hover {
+    transform: translateX(-4px);
+    border-color: var(--accent-purple, #8b5cf6);
+}
+
+.profileInfo h2 {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 1.8rem;
+    color: var(--accent-purple, #8b5cf6);
+}
+
+.profileInfo p {
+    margin: 16px 0;
+    padding: 12px 16px;
+    background-color: rgba(139, 92, 246, 0.08);
+    border-radius: 12px;
+    font-size: 1rem;
+    border-left: 3px solid var(--accent-purple, #8b5cf6);
+}
+
+
+@media (max-width: 1024px) {
+    .profileInfo {
+        max-width: 80%;
+        padding: 20px 30px;
+    }
+
+        .profileInfo h2 {
+            font-size: 1.5rem;
+        }
+
+        .profileInfo p {
+            font-size: 0.9rem;
+            padding: 10px 14px;
+        }
+}
+
+@media (max-width: 768px) {
+    .profileContainer {
+        min-height: auto;
+        padding: 40px 20px;
+    }
+
+    .profileInfo {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+        .profileInfo h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .profileInfo p {
+            font-size: 0.85rem;
+            margin: 12px 0;
+            padding: 10px 12px;
+            word-break: break-word;
+        }
+}
+
+@media (max-width: 480px) {
+    .profileInfo {
+        padding: 16px;
+    }
+
+        .profileInfo h2 {
+            font-size: 1.2rem;
+        }
+
+        .profileInfo p {
+            font-size: 0.8rem;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+}
+
+@media (max-width: 800px) and (min-width: 481px) {
+    .profileInfo {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .profileInfo {
+        max-width: 600px;
+        padding: 40px 50px;
+    }
+
+        .profileInfo h2 {
+            font-size: 2rem;
+        }
+
+        .profileInfo p {
+            font-size: 1.1rem;
+            padding: 14px 18px;
+        }
 }

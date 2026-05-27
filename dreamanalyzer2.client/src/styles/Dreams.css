@@ -172,7 +172,6 @@
     font-size: 0.9rem;
 }
 
-/* Вкладки стратегий */
 .strategy-tabs {
     display: flex;
     flex-wrap: wrap;
@@ -212,7 +211,6 @@
         cursor: not-allowed;
     }
 
-/* Выбор сонника */
 .book-selector-container {
     background: var(--bg-card, #1e293b);
     padding: 16px 20px;
@@ -244,7 +242,6 @@
         border-color: var(--accent-purple, #8b5cf6);
     }
 
-/* Лоадер */
 .ai-loader {
     display: flex;
     flex-direction: column;
@@ -276,7 +273,6 @@
     color: var(--text-muted, #94a3b8);
 }
 
-/* Ошибка */
 .ai-error {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid #ef4444;
@@ -286,7 +282,6 @@
     margin: 20px 0;
 }
 
-/* Результат анализа */
 .ai-result-card {
     background: var(--bg-card, #1e293b);
     border-radius: 16px;
@@ -337,14 +332,12 @@
         font-weight: 600;
     }
 
-/* Текст интерпретации */
 .ai-interpretation-text {
     padding: 24px;
     line-height: 1.7;
     color: var(--text-main, #f8fafc);
 }
 
-/* Символы из AI */
 .ai-symbols-block {
     padding: 16px 24px 24px;
     border-top: 1px solid var(--border-color, #334155);
@@ -371,7 +364,6 @@
     color: #c084fc;
 }
 
-/* Символы из БД (symbols стратегия) */
 .db-symbols-container {
     padding: 20px 24px;
 }
@@ -407,7 +399,6 @@
     color: var(--text-muted, #94a3b8);
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .detailsContainer {
         padding: 16px;
@@ -440,3 +431,40 @@
         align-items: flex-start;
     }
 }
+
+.book-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.book-option-btn {
+    background: var(--bg-card, #1e293b);
+    border: 1px solid var(--border-color, #475569);
+    color: var(--text-main, #f8fafc);
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .book-option-btn:hover {
+        border-color: var(--accent-purple, #8b5cf6);
+        background: rgba(139, 92, 246, 0.1);
+        transform: translateY(-2px);
+    }
+
+.book-cancel-btn {
+    background: transparent;
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+    padding: 8px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+    .book-cancel-btn:hover {
+        background: rgba(239, 68, 68, 0.1);
+    }

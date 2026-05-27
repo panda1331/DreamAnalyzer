@@ -16,6 +16,7 @@ function DreamDetails() {
     const [aiError, setAiError] = useState(null);
     const [activeStrategy, setActiveStrategy] = useState(null);
     const [selectedBook, setSelectedBook] = useState('miller');
+    const [showDreamBookSelector, setShowDreamBookSelector] = useState(false);
 
     const strategies = [
         { id: 'freudian', label: 'Психоанализ Фрейда' },
@@ -49,7 +50,20 @@ function DreamDetails() {
         fetchDream();
     }, [id, token]);
 
-    const handleAnalyzeClick = async (strategyType, authorBook = selectedBook) => {
+    const handleDreamBookClick = () => {
+        setShowDreamBookSelector(true);
+        setActiveStrategy('dreambook');
+        setAnalysis(null);
+        setAiError(null);
+    };
+
+    const handleBookSelect = async (bookType) => {
+        setSelectedBook(bookType);
+        setShowDreamBookSelector(false);
+        await performAnalysis('dreambook', bookType);
+    };
+
+    const performAnalysis = async (strategyType, bookValue) => {
         setAiLoading(true);
         setAiError(null);
         setActiveStrategy(strategyType);
@@ -58,7 +72,7 @@ function DreamDetails() {
         try {
             let url = `/api/Dreams/${id}/analyze?strategyType=${strategyType}`;
             if (strategyType === 'dreambook') {
-                url += `&book=${authorBook}`;
+                url += `&book=${bookValue}`;
             }
 
             const response = await fetch(url, {
@@ -81,6 +95,16 @@ function DreamDetails() {
         } finally {
             setAiLoading(false);
         }
+    }
+
+    const handleAnalyzeClick = async (strategyType) => {
+        if (strategyType === 'dreambook') {
+            handleDreamBookClick();
+            return;
+        }
+
+        setShowDreamBookSelector(false);
+        await performAnalysis(strategyType, null);
     };
 
     const handleBookChange = (e) => {
@@ -153,20 +177,31 @@ function DreamDetails() {
                     ))}
                 </div>
 
-                {activeStrategy === 'dreambook' && (
+                {showDreamBookSelector && activeStrategy === 'dreambook' && (
                     <div className="book-selector-container animate-fade-in">
-                        <label htmlFor="bookSelect">Персонализированный источник: </label>
-                        <select
-                            id="bookSelect"
-                            value={selectedBook}
-                            onChange={handleBookChange}
-                            disabled={aiLoading}
-                            className="book-select-dropdown">
-
-                            <option value="miller">Сонник Миллера (Житейский)</option>
-                            <option value="vanga">Сонник Ванги (Мистический)</option>
-                            <option value="nostradamus">Сонник Нострадамуса (Пророческий)</option>
-                        </select>
+                        <label>Выберите источник толкования:</label>
+                        <div className="book-options">
+                            <button
+                                className="book-option-btn"
+                                onClick={() => handleBookSelect('miller')}>
+                                Сонник Миллера (Житейский)
+                            </button>
+                            <button
+                                className="book-option-btn"
+                                onClick={() => handleBookSelect('vanga')}>
+                                Сонник Ванги (Мистический)
+                            </button>
+                            <button
+                                className="book-option-btn"
+                                onClick={() => handleBookSelect('nostradamus')}>
+                                Сонник Нострадамуса (Пророческий)
+                            </button>
+                        </div>
+                        <button
+                            className="book-cancel-btn"
+                            onClick={() => setShowDreamBookSelector(false)}>
+                            Отмена
+                        </button>
                     </div>
                 )}
 

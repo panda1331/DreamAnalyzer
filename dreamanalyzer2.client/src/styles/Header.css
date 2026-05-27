@@ -5,16 +5,6 @@
     align-content: space-between;
 }
 
-/*.headerTitle {
-    font-weight: 600;
-}
-
-.headerTitle:hover {
-    transition: 0.7s;
-    transform: scale(1.05);
-    opacity: 0.9;
-}*/
-
 .headerTitle {
     font-weight: 600;
     background: linear-gradient(135deg, #8b5cf6, #c084fc);
@@ -69,20 +59,96 @@
     transform: translateY(-2px);
 }
 
+@media (max-width: 1024px) {
+    .header {
+        padding: 16px 24px;
+    }
+
+    .headerTitle {
+        font-size: 1.3rem;
+    }
+
+    .navigation {
+        gap: 12px;
+    }
+
+    .navigation button {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
         gap: 16px;
         padding: 16px;
+        position: static;
+    }
+
+    .headerTitle {
+        font-size: 1.3rem;
+        text-align: center;
     }
 
     .navigation {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 12px;
     }
 
-        .navigation button {
-            padding: 6px 16px;
-            font-size: 0.85rem;
-        }
+    .navigation button {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .headerTitle {
+        font-size: 1.1rem;
+    }
+
+    .navigation {
+        gap: 8px;
+    }
+
+    .navigation button {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 600px) and (min-width: 481px) {
+    .navigation {
+        gap: 10px;
+    }
+
+    .navigation button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .header {
+        padding: 24px 60px;
+    }
+
+    .headerTitle {
+        font-size: 1.8rem;
+    }
+
+    .navigation {
+        gap: 28px;
+    }
+
+    .navigation button {
+        padding: 10px 28px;
+        font-size: 1rem;
+    }
 }
