@@ -3,6 +3,7 @@ using DreamAnalyzer2.Application.Interfaces.Services;
 using DreamAnalyzer2.Application.Services;
 using DreamAnalyzer2.Infrastructure;
 using DreamAnalyzer2.Infrastructure.Security;
+using DreamAnalyzer2.Server.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -81,6 +82,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

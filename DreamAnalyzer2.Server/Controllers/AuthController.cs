@@ -30,19 +30,19 @@ namespace DreamAnalyzer2.Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser(LoginDto loginDto)
         {
-            try
-            {
+            //try
+            //{
                 var response = await _authService.LoginAsync(loginDto);
                 return Ok(ApiResponse<AuthResponseDto>.SuccessResponse(response));
-            }
-            catch (InvalidCredentialException ex)
-            {
-                return Unauthorized(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
+            //}
+            //catch (InvalidCredentialException ex)
+            //{
+            //    return Unauthorized(new { message = ex.Message });
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, new { message = "Internal server error" });
+            //}
         }
     }
 }
