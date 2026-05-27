@@ -24,5 +24,13 @@ namespace DreamAnalyzer2.Server.Controllers
             var response = await _userService.GetUserInfo(userId);
             return Ok(ApiResponse<ProfileResponseDto>.SuccessResponse(response));
         }
+
+        [HttpGet("statistics")]
+        public async Task<IActionResult> GetStatistics()
+        {
+            var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var response = await _userService.GetUserStatisticksAsync(userId);
+            return Ok(ApiResponse<StatisticsResponseDto>.SuccessResponse(response));
+        }
     }
 }

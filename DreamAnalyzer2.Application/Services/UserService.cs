@@ -26,15 +26,60 @@ namespace DreamAnalyzer2.Application.Services
                 throw new NotFoundException("User not found");
             var createdDate = user.CreatedAt.ToString("dd.MM.yyyy");
 
-            var dreams = await _dreamsRepository.GetByUserIdAsync(userId);
-            var dreamsCount = dreams.Count();
-
             return new ProfileResponseDto
             {
                 Username = user.Username,
                 Email = user.Email,
                 RegistryDate = createdDate,
-                DreamsCount = dreamsCount,
+            };
+        }
+
+        public async Task<StatisticsResponseDto> GetUserStatisticksAsync(Guid userId)
+        {
+            var dreams = await _dreamsRepository.GetByUserIdAsync(userId);
+            var analyzedDreams = dreams.Where(d => d.Analysis != null).ToList();
+
+            var totalDreams = dreams.Count;
+            var averageLength = dreams.Any() ? dreams.Average(d => d.Content.Length) : 0;
+            
+            var weekdayStats = new Dictionary<string, int>();
+            foreach (var dream in dreams)
+            {
+                var weekday = dream.DreamDate.ToString("dddd", new System.Globalization.CultureInfo("ru-RU"));
+                weekdayStats[weekday] = weekdayStats.GetValueOrDefault(weekday) + 1;
+            }
+
+            var moodStats = new Dictionary<string, int>();
+            foreach(var dream in analyzedDreams)
+            {
+                var mood = dream.Analysis.Mood.Name;
+                moodStats[mood] = moodStats.GetValueOrDefault(mood) + 1;
+            } 
+
+            var symbolStats = new Dictionary<string, int>();
+            foreach ( var dream in analyzedDreams)
+            {
+                foreach( var symbol in dream.Analysis.Symbols)
+                {
+                    symbolStats[symbol.Name] = symbolStats.GetValueOrDefault(symbol.Name) + 1;
+                }
+            }
+
+            var topSymbols = symbolStats
+                .OrderByDescending(s => s.Value)
+                .Take(5)
+                .Select(s => new PopularSymbolDto { SymbolName = s.Key, Count = s.Value })
+                .ToList();
+
+            return new StatisticsResponseDto
+            {
+                TotalDreams = totalDreams,
+                AverageDreamLength = averageLength,
+                FirstDreamDate = dreams.MinBy(d => d.DreamDate)?.DreamDate.ToString("yyyy-MM-dd"),
+                LastDreamDate = dreams.MaxBy(d => d.DreamDate)?.DreamDate.ToString("yyyy-MM-dd"),
+                DreamsByWeekDay = weekdayStats,
+                MoodDistribution = moodStats,
+                PopularSymbols = topSymbols,
             };
         }
     }

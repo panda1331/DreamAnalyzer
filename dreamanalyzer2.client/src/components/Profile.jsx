@@ -27,7 +27,6 @@ function Profile() {
                 <div className="profileInfo">
                     <p>Имя пользователя: {profile.username}</p>
                     <p>Email: {profile.email}</p>
-                    <p>Счетчик снов: {profile.dreamsCount}</p>
                     <p>Дата регистрации: {profile.registryDate }</p>
                 </div>
             </div>

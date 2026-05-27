@@ -8,5 +8,6 @@ namespace DreamAnalyzer2.Application.Interfaces.Services
     public interface IUserService
     {
         Task<ProfileResponseDto> GetUserInfo(Guid userId); 
+        Task<StatisticsResponseDto> GetUserStatisticksAsync(Guid userId);
     }
 }
