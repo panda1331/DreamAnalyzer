@@ -34,7 +34,7 @@ namespace DreamAnalyzer2.Application.Services
             };
         }
 
-        public async Task<StatisticsResponseDto> GetUserStatisticksAsync(Guid userId)
+        public async Task<StatisticsResponseDto> GetUserStatisticsAsync(Guid userId)
         {
             var dreams = await _dreamsRepository.GetByUserIdAsync(userId);
             var analyzedDreams = dreams.Where(d => d.Analysis != null).ToList();

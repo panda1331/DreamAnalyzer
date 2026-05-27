@@ -29,7 +29,7 @@ namespace DreamAnalyzer2.Server.Controllers
         public async Task<IActionResult> GetStatistics()
         {
             var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var response = await _userService.GetUserStatisticksAsync(userId);
+            var response = await _userService.GetUserStatisticsAsync(userId);
             return Ok(ApiResponse<StatisticsResponseDto>.SuccessResponse(response));
         }
     }
