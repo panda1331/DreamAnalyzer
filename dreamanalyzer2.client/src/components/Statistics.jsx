@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import "../styles/Statistics.css";
 
 function Statistics() {
     const [stats, setStats] = useState(null);
@@ -34,7 +35,6 @@ function Statistics() {
 
     return (
         <div className="statistics-container">
-            <h2>Статистика снов</h2>
             <div className="stats-cards">
                 <div className="stat-card">
                     <div className="stat-value">{stats.totalDreams}</div>
@@ -78,7 +78,7 @@ function Statistics() {
 
             {stats.popularSymbols.length > 0 && (
                 <div className="stats-section">
-                    <h3>🏷️ Популярные символы</h3>
+                    <h3>Популярные символы</h3>
                     <div className="symbols-tags">
                         {stats.popularSymbols.map(s => (
                             <div key={s.symbolName} className="symbol-tag">

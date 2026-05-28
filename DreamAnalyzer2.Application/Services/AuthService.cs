@@ -41,7 +41,7 @@ namespace DreamAnalyzer2.Application.Services
             if (!isCorrectPassword)
                 throw new InvalidCredentialException("Wrong password. Please try again.");
 
-            var token = _tokenGenerator.GenerateToken(user.Id, user.Email);
+            var token = _tokenGenerator.GenerateToken(user.Id, user.Email, user.Role.ToString());
 
             return new AuthResponseDto
             {
@@ -64,7 +64,7 @@ namespace DreamAnalyzer2.Application.Services
             await _userRepository.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
-            var token = _tokenGenerator.GenerateToken(user.Id, user.Email);
+            var token = _tokenGenerator.GenerateToken(user.Id, user.Email, user.Role.ToString());
             return new AuthResponseDto
             {
                 Id = user.Id,

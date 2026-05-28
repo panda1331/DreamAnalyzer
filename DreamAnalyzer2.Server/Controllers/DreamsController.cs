@@ -62,7 +62,7 @@ namespace DreamAnalyzer2.Server.Controllers
         public async Task<IActionResult> DeleteDream(Guid id)
         {
             var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            await _dreamService.DeleteDreamAsync(userId, id);
+            await _dreamService.DeleteDreamAsync(userId, id, isAdmin: false);
             return Ok(ApiResponse<string>.SuccessResponse("Dream deleted"));
         }
 

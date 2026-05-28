@@ -41,16 +41,25 @@ namespace DreamAnalyzer2.Application.Services
             };
         }
 
-        public async Task DeleteDreamAsync(Guid userId, Guid id)
+        public async Task DeleteDreamAsync(Guid userId, Guid id, bool isAdmin)
         {
             var dream = await _repository.GetByIdAsync(id);
             if (dream == null)
                 throw new NotFoundException("No such dream");
-            if (dream.UserId != userId)
+            if (!isAdmin && dream.UserId != userId)
                 throw new ValidationException("You can delete only your dreams");
 
             await _repository.DeleteAsync(id);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<List<DreamResponseDto>> GetAllDreamsAsync()
+        {
+            var dreams = await _repository.GetAllAsync();
+            var responses = new List<DreamResponseDto>();
+            foreach (var dream in dreams)
+                responses.Add(ToResponse(dream));
+            return responses;
         }
 
         public async Task<List<DreamResponseDto>> GetAllDreamsByUserIdAsync(Guid userId)

@@ -12,7 +12,8 @@ namespace DreamAnalyzer2.Application.Interfaces.Services
         Task<DreamResponseDto> CreateDreamAsync(Guid userId, CreateDreamDto createDreamDto);
         Task<DreamResponseDto> UpdateDreamAsync(Guid userId, Guid id, UpdateDreamDto updateDreamDto);
         Task<List<DreamResponseDto>> GetAllDreamsByUserIdAsync(Guid userId);
+        Task<List<DreamResponseDto>> GetAllDreamsAsync();
         Task<DreamResponseDto> GetDreamByIdAsync(Guid userId, Guid id);
-        Task DeleteDreamAsync(Guid userId, Guid id);
+        Task DeleteDreamAsync(Guid userId, Guid id, bool isAdmin);
     }
 }

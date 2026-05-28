@@ -1,5 +1,7 @@
 ﻿using DreamAnalyzer2.Application.DTOs.Responses;
+using DreamAnalyzer2.Application.Interfaces;
 using DreamAnalyzer2.Application.Interfaces.Services;
+using DreamAnalyzer2.Domain.Entities;
 using DreamAnalyzer2.Domain.Interfaces;
 using DreamAnalyzer2.Shared.Shared;
 using System;
@@ -12,11 +14,39 @@ namespace DreamAnalyzer2.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IDreamRepository _dreamsRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IUserRepository userRepository, IDreamRepository dreamsRepository)
+        public UserService(IUserRepository userRepository, IDreamRepository dreamsRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _dreamsRepository = dreamsRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task DeleteUserAsync(Guid userId)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+                throw new NotFoundException("User not found");
+            await _userRepository.DeleteAsync(userId);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<List<UserResponseDto>> GetAllUsersAsync()
+        {
+            var users = await _userRepository.GetAllAsync();
+            var responses = new List<UserResponseDto>();
+            foreach (var user in users) 
+                responses.Add(ToResponse(user));
+            return responses;
+        }
+
+        public async Task<UserResponseDto?> GetUserByIdAsync(Guid userId)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+                throw new NotFoundException("User not found");
+            return ToResponse(user);
         }
 
         public async Task<ProfileResponseDto> GetUserInfo(Guid userId)
@@ -40,7 +70,7 @@ namespace DreamAnalyzer2.Application.Services
             var analyzedDreams = dreams.Where(d => d.Analysis != null).ToList();
 
             var totalDreams = dreams.Count;
-            var averageLength = dreams.Any() ? dreams.Average(d => d.Content.Length) : 0;
+            var averageLength = Math.Round(dreams.Any() ? dreams.Average(d => d.Content.Length) : 0);
             
             var weekdayStats = new Dictionary<string, int>();
             foreach (var dream in dreams)
@@ -80,6 +110,18 @@ namespace DreamAnalyzer2.Application.Services
                 DreamsByWeekDay = weekdayStats,
                 MoodDistribution = moodStats,
                 PopularSymbols = topSymbols,
+            };
+        }
+
+        private UserResponseDto ToResponse(User user)
+        {
+            return new UserResponseDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                CreatedAt = user.CreatedAt.ToString("yyyy-MM-dd"),
+                Role = user.Role.ToString(),
             };
         }
     }

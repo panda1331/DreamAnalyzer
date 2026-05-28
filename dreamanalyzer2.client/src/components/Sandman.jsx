@@ -1,5 +1,5 @@
 import '../styles/Sandman.css';
-import sandman from "../../public/images/sandman.png";
+import sandman from "../assets/sandman.png";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from 'react';
 

@@ -41,10 +41,10 @@ function Profile() {
             </div>
 
             {activeTab === 'profile' ? (
-                <div className="profileInfo">
-                    <p><strong>👨‍💼 Имя пользователя:</strong> {profile.username}</p>
-                    <p><strong>📧 Email:</strong> {profile.email}</p>
-                    <p><strong>📅 Дата регистрации:</strong> {new Date(profile.registryDate).toLocaleDateString()}</p>
+                <div className="profile-info">
+                    <p><strong>Имя пользователя:</strong> {profile.username}</p>
+                    <p><strong>Email:</strong> {profile.email}</p>
+                    <p><strong>Дата регистрации:</strong> {profile.registryDate}</p>
                 </div>
             ) : (
                 <Statistics />

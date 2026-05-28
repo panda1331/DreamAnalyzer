@@ -19,13 +19,14 @@ namespace DreamAnalyzer2.Infrastructure.Security
             _settings = settings.Value;
         }
 
-        public string GenerateToken(Guid id, string email)
+        public string GenerateToken(Guid id, string email, string role)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim> { 
                 new Claim(ClaimTypes.NameIdentifier, id.ToString()),
                 new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Role, role),
             };
             var token = new JwtSecurityToken(
                 issuer: _settings.Issuer,

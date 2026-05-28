@@ -9,5 +9,9 @@ namespace DreamAnalyzer2.Domain.Interfaces
     {
         Task<List<DreamSymbol>> GetAllAsync();
         Task<DreamSymbol?> GetByNameAsync(string name);
+        Task<DreamSymbol?> GetByIdAsync(Guid id);
+        Task AddAsync(DreamSymbol dreamSymbol);
+        void Update(DreamSymbol dreamSymbol);
+        Task DeleteAsync(Guid id);
     }
 }

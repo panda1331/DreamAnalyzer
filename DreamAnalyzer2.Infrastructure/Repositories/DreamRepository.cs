@@ -31,6 +31,11 @@ namespace DreamAnalyzer2.Infrastructure.Repositories
                 _context.Dreams.Remove(dream);
         }
 
+        public async Task<List<Dream>> GetAllAsync()
+        {
+            return await _context.Dreams.ToListAsync();
+        }
+
         public async Task<Dream?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Dreams

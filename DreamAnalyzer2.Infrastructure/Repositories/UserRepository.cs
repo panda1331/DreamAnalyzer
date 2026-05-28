@@ -38,6 +38,11 @@ namespace DreamAnalyzer2.Infrastructure.Repositories
                 _context.Users.Remove(user);
         }
 
+        public async Task<List<User>> GetAllAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
         public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
