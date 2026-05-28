@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../styles/Dreams.css'
 function DreamsList() {
     const [dreams, setDreams] = useState(null);
+    const [filteredDreams, setFilteredDreams] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
 
@@ -42,6 +44,19 @@ function DreamsList() {
         fetchDreams();
     }, [token]);
 
+    useEffect(() => {
+        if (!dreams) return;
+
+        if (searchTerm.trim() === '') {
+            setFilteredDreams(dreams);
+        } else {
+            const filtered = dreams.filter(dream =>
+                dream.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                dream.content.toLowerCase().includes(searchTerm.toLowerCase()));
+            setFilteredDreams(filtered);
+        }
+    }, [searchTerm, dreams]);
+
     if (loading) {
         return (
             <div className="dream-container">
@@ -59,10 +74,27 @@ function DreamsList() {
                 <h2 className="myDreamsTitle">Мои сны</h2>
                 <Link to="/dreams/create"><button className="dreamTitleContainerCreateBtn">Добавить сон</button></Link> 
             </div>
-           
+
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Поиск по снам..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input" />
+                {searchTerm && (
+                    <button className="search-clear" onClick={() => setSearchTerm('')}>x</button>
+                )}
+            </div>
+
+            {filteredDreams && filteredDreams.length === 0 && (
+                <p className="no-dreams">Сны не найдены</p>
+            )}
+
             {dreams && dreams.length === 0 && <p>У вас пока нет снов</p>}
+
             <div className="dreamsList">
-                {dreams && dreams.map(dream => (
+                {filteredDreams && filteredDreams.map(dream => (
                     <Link to={`/dreams/${dream.id}`}> <div key={dream.id} className="dreamCard">
                         <div className="dreamCardContainerHeader">
                             <h3>{dream.title}</h3>

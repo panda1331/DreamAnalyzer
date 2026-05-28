@@ -46,7 +46,10 @@ namespace DreamAnalyzer2.Server.Controllers
         public async Task<IActionResult> GetDream(Guid id)
         {
             var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var response = await _dreamService.GetDreamByIdAsync(userId, id);
+            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            var isAdmin = userRole == "Admin";
+
+            var response = await _dreamService.GetDreamByIdAsync(userId, id, isAdmin);
             return Ok(ApiResponse<DreamResponseDto>.SuccessResponse(response));
         }
 

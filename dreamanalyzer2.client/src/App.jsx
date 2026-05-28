@@ -13,6 +13,7 @@ import AddDream from './components/AddDream';
 import DreamDetails from './components/DreamDetails';
 import EditDream from './components/EditDream';
 import Sandman from './components/Sandman';
+import AdminLayout from './components/Admin/AdminLayout';
 
 function App() {
     return (
@@ -46,6 +47,11 @@ function App() {
                     <Route path="/dreams/:id/edit" element={
                         <PrivateRoute>
                             <EditDream />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/admin" element={
+                        <PrivateRoute>
+                            <AdminLayout />
                         </PrivateRoute>
                     } />
                 </Routes>

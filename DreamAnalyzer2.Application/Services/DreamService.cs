@@ -71,12 +71,12 @@ namespace DreamAnalyzer2.Application.Services
             return responses;
         }
 
-        public async Task<DreamResponseDto> GetDreamByIdAsync(Guid userId, Guid id)
+        public async Task<DreamResponseDto> GetDreamByIdAsync(Guid userId, Guid id, bool isAdmin)
         {
             var dream = await _repository.GetByIdAsync(id);
             if (dream == null)
                 throw new NotFoundException("No such dream");
-            if (dream.UserId != userId)
+            if (!isAdmin && dream.UserId != userId)
                 throw new ValidationException("You can only view your own dreams");
 
             return ToResponse(dream);

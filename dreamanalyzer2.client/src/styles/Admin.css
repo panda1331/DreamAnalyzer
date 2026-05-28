@@ -1,0 +1,103 @@
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border-color, #334155);
+    padding-bottom: 8px;
+}
+
+    .admin-tabs button {
+        background: transparent;
+        border: none;
+        padding: 10px 24px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-muted, #94a3b8);
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.2s;
+    }
+
+        .admin-tabs button:hover {
+            color: var(--accent-purple, #8b5cf6);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .admin-tabs button.active {
+            color: var(--accent-purple, #8b5cf6);
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+.admin-table-container {
+    background: var(--bg-card, #1e293b);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid var(--border-color, #334155);
+}
+
+    .admin-table-container h2 {
+        margin-bottom: 20px;
+        color: var(--accent-purple, #8b5cf6);
+    }
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color, #334155);
+    }
+
+    .admin-table th {
+        color: var(--accent-purple, #8b5cf6);
+        font-weight: 600;
+    }
+
+    .admin-table td {
+        color: var(--text-main, #f8fafc);
+    }
+
+.dream-content-cell {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.view-btn, .delete-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 4px;
+    font-size: 0.8rem;
+}
+
+.view-btn {
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid var(--accent-purple, #8b5cf6);
+    color: var(--accent-purple, #8b5cf6);
+}
+
+    .view-btn:hover {
+        background: rgba(139, 92, 246, 0.4);
+    }
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+}
+
+    .delete-btn:hover {
+        background: rgba(239, 68, 68, 0.4);
+    }

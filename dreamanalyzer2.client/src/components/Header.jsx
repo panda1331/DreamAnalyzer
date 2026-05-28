@@ -1,11 +1,23 @@
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 import ConfirmModal from './ConfirmModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Header() {
     const token = localStorage.getItem('token');
     const [showModal, setShowModal] = useState(false);
+    const [userRole, setUserRole] = useState(null);
+
+    useEffect(() => {
+        if (token) {
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                setUserRole(payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
+            } catch (e) {
+                console.error('Ошибка декодирования токена', e);
+            }
+        }
+    }, [token]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -20,6 +32,9 @@ function Header() {
                     <>
                         <Link to="/dreams"><button>Мои сны</button></Link>
                         <Link to="/profile"><button>Профиль</button></Link>
+                        {userRole === 'Admin' && (
+                            <Link to="/admin"><button>Админка</button></Link>
+                        ) }
                         <button onClick={() => setShowModal(true)}>Выйти</button>
                         <ConfirmModal
                             isOpen={showModal}

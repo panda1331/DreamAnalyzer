@@ -24,7 +24,7 @@ function EditDream() {
                 if (response.ok) {
                     setTitle(data.data.title);
                     setContent(data.data.content);
-                    setDreamDate(data.data.dreamDate);
+                    setDreamDate(data.data.dreamDate.split('T')[0]);
                 } else {
                     setError(data.message || 'Failed to load dream');
                 }
@@ -69,11 +69,25 @@ function EditDream() {
         <div>
             <h2>Редактировать сон</h2>
             <form onSubmit={handleSubmit} className="formStyle">
-                <input className="inputElement" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <textarea className="inputElement" value={content} onChange={(e) => setContent(e.target.value)} />
-                <input className="inputElement" type="date" value={dreamDate} onChange={(e) => setDreamDate(e.target.value)} />
+                <div className="inputElement">
+                    <label>Заголовок:</label>
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                </div>
+
+                <div className="inputElement">
+                    <label>Содержание:</label>
+                    <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={6} />
+                </div>
+
+                <div className="inputElement">
+                    <label>Дата сна:</label>
+                    <input type="date" value={dreamDate} onChange={(e) => setDreamDate(e.target.value)} />
+                </div>
+
                 <button type="submit" className="submitBtn">Редактировать</button>
-                <Link to='/dreams'><button type="button">Отмена</button></Link> 
+                <Link to='/dreams'>
+                    <button type="button" className="submitBtn">Отмена</button>
+                </Link>
             </form>
         </div>
     );

@@ -22,6 +22,9 @@ namespace DreamAnalyzer2.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDreams()
         {
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
+            Console.WriteLine($"User role: {role}");
+
             var response = await _dreamService.GetAllDreamsAsync();
             return Ok(ApiResponse<List<DreamResponseDto>>.SuccessResponse(response));
         }
@@ -35,7 +38,7 @@ namespace DreamAnalyzer2.Server.Controllers
         public async Task<IActionResult> GetDreamById(Guid id)
         {
             var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var response = await _dreamService.GetDreamByIdAsync(userId, id);
+            var response = await _dreamService.GetDreamByIdAsync(userId, id, isAdmin: true);
             return Ok(ApiResponse<DreamResponseDto>.SuccessResponse(response));
         }
         [HttpDelete("{id}")]
