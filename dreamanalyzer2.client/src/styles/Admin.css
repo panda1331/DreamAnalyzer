@@ -12,27 +12,27 @@
     padding-bottom: 8px;
 }
 
-    .admin-tabs button {
-        background: transparent;
-        border: none;
-        padding: 10px 24px;
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--text-muted, #94a3b8);
-        cursor: pointer;
-        border-radius: 8px;
-        transition: all 0.2s;
-    }
+.admin-tabs button {
+    background: transparent;
+    border: none;
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted, #94a3b8);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
 
-        .admin-tabs button:hover {
-            color: var(--accent-purple, #8b5cf6);
-            background: rgba(139, 92, 246, 0.1);
-        }
+    .admin-tabs button:hover {
+    color: var(--accent-purple, #8b5cf6);
+    background: rgba(139, 92, 246, 0.1);
+}
 
-        .admin-tabs button.active {
-            color: var(--accent-purple, #8b5cf6);
-            background: rgba(139, 92, 246, 0.15);
-        }
+.admin-tabs button.active {
+    color: var(--accent-purple, #8b5cf6);
+    background: rgba(139, 92, 246, 0.15);
+}
 
 .admin-table-container {
     background: var(--bg-card, #1e293b);
@@ -41,31 +41,31 @@
     border: 1px solid var(--border-color, #334155);
 }
 
-    .admin-table-container h2 {
-        margin-bottom: 20px;
-        color: var(--accent-purple, #8b5cf6);
-    }
+.admin-table-container h2 {
+    margin-bottom: 20px;
+    color: var(--accent-purple, #8b5cf6);
+}
 
 .admin-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-    .admin-table th,
-    .admin-table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid var(--border-color, #334155);
-    }
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #334155);
+}
 
-    .admin-table th {
-        color: var(--accent-purple, #8b5cf6);
-        font-weight: 600;
-    }
+.admin-table th {
+    color: var(--accent-purple, #8b5cf6);
+    font-weight: 600;
+}
 
-    .admin-table td {
-        color: var(--text-main, #f8fafc);
-    }
+.admin-table td {
+    color: var(--text-main, #f8fafc);
+}
 
 .dream-content-cell {
     max-width: 300px;
@@ -88,9 +88,9 @@
     color: var(--accent-purple, #8b5cf6);
 }
 
-    .view-btn:hover {
-        background: rgba(139, 92, 246, 0.4);
-    }
+.view-btn:hover {
+    background: rgba(139, 92, 246, 0.4);
+}
 
 .delete-btn {
     background: rgba(239, 68, 68, 0.2);
@@ -98,6 +98,6 @@
     color: #fca5a5;
 }
 
-    .delete-btn:hover {
-        background: rgba(239, 68, 68, 0.4);
-    }
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.4);
+}

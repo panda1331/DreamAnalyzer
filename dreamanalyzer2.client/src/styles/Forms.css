@@ -137,15 +137,15 @@
         gap: 8px;
     }
 
-        .inputElement label {
-            min-width: auto;
-            text-align: left;
-        }
+    .inputElement label {
+        min-width: auto;
+        text-align: left;
+    }
 
-        .inputElement input,
-        .inputElement textarea {
-            width: 100%;
-        }
+    .inputElement input,
+    .inputElement textarea {
+        width: 100%;
+    }
 
     .submitBtn {
         width: 100%;
@@ -160,9 +160,9 @@
         gap: 16px;
     }
 
-        .formStyle h2 {
-            font-size: 1.3rem;
-        }
+    .formStyle h2 {
+        font-size: 1.3rem;
+    }
 
     .inputElement input,
     .inputElement textarea {

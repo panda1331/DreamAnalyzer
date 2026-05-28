@@ -79,14 +79,14 @@
         padding: 20px 30px;
     }
 
-        .profile-info h2 {
-            font-size: 1.5rem;
-        }
+    .profile-info h2 {
+        font-size: 1.5rem;
+    }
 
-        .profile-info p {
-            font-size: 0.9rem;
-            padding: 10px 14px;
-        }
+    .profile-info p {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -100,17 +100,17 @@
         padding: 20px;
     }
 
-        .profile-info h2 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-        }
+    .profile-info h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
 
-        .profile-info p {
-            font-size: 0.85rem;
-            margin: 12px 0;
-            padding: 10px 12px;
-            word-break: break-word;
-        }
+    .profile-info p {
+        font-size: 0.85rem;
+        margin: 12px 0;
+        padding: 10px 12px;
+        word-break: break-word;
+    }
 }
 
 @media (max-width: 480px) {
@@ -118,17 +118,17 @@
         padding: 16px;
     }
 
-        .profile-info h2 {
-            font-size: 1.2rem;
-        }
+    .profile-info h2 {
+        font-size: 1.2rem;
+    }
 
-        .profile-info p {
-            font-size: 0.8rem;
-            padding: 8px 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+    .profile-info p {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
 }
 
 @media (max-width: 800px) and (min-width: 481px) {
@@ -144,12 +144,12 @@
         padding: 40px 50px;
     }
 
-        .profile-info h2 {
-            font-size: 2rem;
-        }
+    .profile-info h2 {
+        font-size: 2rem;
+    }
 
-        .profile-info p {
-            font-size: 1.1rem;
-            padding: 14px 18px;
-        }
+    .profile-info p {
+        font-size: 1.1rem;
+        padding: 14px 18px;
+    }
 }
