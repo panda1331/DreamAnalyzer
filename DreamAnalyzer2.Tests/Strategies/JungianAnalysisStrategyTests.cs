@@ -5,6 +5,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace DreamAnalyzer2.Tests.Strategies
 {
@@ -22,7 +23,6 @@ namespace DreamAnalyzer2.Tests.Strategies
         [Fact]
         public async Task AnalyzeAsync_ShouldReturnValidAnalysisResponse()
         {
-            // Arrange
             var dreamContent = "Тест сна для Юнга";
             var aiResponse = "{\"interpretation\": \"Архетип Тени...\", \"mood\": \"Peaceful\", \"symbols\": [\"старик\", \"море\"]}";
 
@@ -30,14 +30,71 @@ namespace DreamAnalyzer2.Tests.Strategies
                 .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(aiResponse);
 
-            // Act
             var result = await _strategy.AnalyzeAsync(dreamContent);
 
-            // Assert
             result.Should().NotBeNull();
             result.Interpretation.Should().Be("Архетип Тени...");
             result.MoodName.Should().Be("Peaceful");
             result.Symbols.Should().Contain("старик");
+        }
+
+        [Fact]
+        public async Task AnalyzeAsync_WhenAiReturnsInvalidJson_ThrowsException()
+        {
+            var dreamContent = "Тест сна";
+            var invalidJson = "Not a valid JSON { invalid }";
+
+            _aiClientMock
+                .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(invalidJson);
+
+            Func<Task> act = async () => await _strategy.AnalyzeAsync(dreamContent);
+
+            await act.Should().ThrowAsync<JsonException>();
+        }
+
+        [Fact]
+        public async Task AnalyzeAsync_WhenAiReturnsEmptyResponse_ThrowsException()
+        {
+            var dreamContent = "Тест сна";
+            var emptyResponse = "";
+
+            _aiClientMock
+                .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(emptyResponse);
+
+            Func<Task> act = async () => await _strategy.AnalyzeAsync(dreamContent);
+
+            await act.Should().ThrowAsync<Exception>();
+        }
+
+        [Fact]
+        public async Task AnalyzeAsync_WhenAiReturnsResponseWithoutBrackets_ThrowsException()
+        {
+            var dreamContent = "Тест сна";
+            var responseWithoutBrackets = "interpretation: test";
+
+            _aiClientMock
+                .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(responseWithoutBrackets);
+
+            Func<Task> act = async () => await _strategy.AnalyzeAsync(dreamContent);
+
+            await act.Should().ThrowAsync<Exception>().WithMessage("ИИ вернул некорректный формат ответа*");
+        }
+
+        [Fact]
+        public async Task AnalyzeAsync_WhenAiThrowsException_PropagatesError()
+        {
+            var dreamContent = "Тест сна";
+
+            _aiClientMock
+                .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
+                .ThrowsAsync(new HttpRequestException("Network error"));
+
+            Func<Task> act = async () => await _strategy.AnalyzeAsync(dreamContent);
+
+            await act.Should().ThrowAsync<HttpRequestException>().WithMessage("Network error");
         }
     }
 }

@@ -22,7 +22,6 @@ namespace DreamAnalyzer2.Tests.Strategies
         [Fact]
         public async Task AnalyzeAsync_ShouldReturnValidAnalysisResponse()
         {
-            // Arrange
             var dreamContent = "Тест сна для Фрейда";
             var aiResponse = "{\"interpretation\": \"Этот сон символизирует...\", \"mood\": \"Anxious\", \"symbols\": [\"лестница\", \"змея\"]}";
 
@@ -30,10 +29,8 @@ namespace DreamAnalyzer2.Tests.Strategies
                 .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(aiResponse);
 
-            // Act
             var result = await _strategy.AnalyzeAsync(dreamContent);
 
-            // Assert
             result.Should().NotBeNull();
             result.Interpretation.Should().Be("Этот сон символизирует...");
             result.MoodName.Should().Be("Anxious");
@@ -43,7 +40,6 @@ namespace DreamAnalyzer2.Tests.Strategies
         [Fact]
         public async Task AnalyzeAsync_WhenAiReturnsInvalidJson_ThrowsException()
         {
-            // Arrange
             var dreamContent = "Тест сна";
             var invalidJson = "Not a valid JSON";
 
@@ -51,10 +47,8 @@ namespace DreamAnalyzer2.Tests.Strategies
                 .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), dreamContent, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(invalidJson);
 
-            // Act
             Func<Task> act = async () => await _strategy.AnalyzeAsync(dreamContent);
 
-            // Assert
             await act.Should().ThrowAsync<Exception>();
         }
     }

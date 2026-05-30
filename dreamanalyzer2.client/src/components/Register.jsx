@@ -4,9 +4,29 @@ function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
+    const validatePassword = (pass) => {
+        if (pass.length < 8) {
+            return "Пароль должен содержать минимум 8 символов";
+        }
+        if (!/[A-Z]/.test(pass)) {
+            return "Пароль должен содержать хотя бы одну заглавную букву";
+        }
+        if (!/[0-9]/.test(pass)) {
+            return "Пароль должен содержать хотя бы одну цифру";
+        }
+        return "";
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const error = validatePassword(password);
+        if (error) {
+            setPasswordError(error);
+            return;
+        }
 
         try {
             const response = await fetch("/api/authentication/register", {
@@ -49,7 +69,8 @@ function Register() {
                     <label htmlFor="password">Пароль: </label>
                     <input required="true" id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button type="submit" className="submitBtn">Register</button>
+                {passwordError && <div className="error-message">{passwordError}</div>}
+                <button type="submit" className="submitBtn">Зарегистрироваться</button>
             </form>
         </div>
     )

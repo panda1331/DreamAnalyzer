@@ -23,7 +23,6 @@ namespace DreamAnalyzer2.Tests.Strategies
         [Fact]
         public async Task AnalyzeAsync_WhenSymbolFound_ReturnsAnalysisResponse()
         {
-            // Arrange
             var dreamContent = "Мне приснилась кошка";
             var symbols = new List<DreamSymbol>
             {
@@ -34,10 +33,8 @@ namespace DreamAnalyzer2.Tests.Strategies
                 .Setup(x => x.GetAllAsync())
                 .ReturnsAsync(symbols);
 
-            // Act
             var result = await _strategy.AnalyzeAsync(dreamContent);
 
-            // Assert
             result.Should().NotBeNull();
             result.Symbols.Should().Contain("кошка");
             result.MoodName.Should().Be("Peaceful");
@@ -46,7 +43,6 @@ namespace DreamAnalyzer2.Tests.Strategies
         [Fact]
         public async Task AnalyzeAsync_WhenNoSymbolFound_ReturnsEmptySymbols()
         {
-            // Arrange
             var dreamContent = "Какой-то странный сон без символов";
             var symbols = new List<DreamSymbol>();
 
@@ -54,10 +50,8 @@ namespace DreamAnalyzer2.Tests.Strategies
                 .Setup(x => x.GetAllAsync())
                 .ReturnsAsync(symbols);
 
-            // Act
             var result = await _strategy.AnalyzeAsync(dreamContent);
 
-            // Assert
             result.Should().NotBeNull();
             result.Symbols.Should().BeEmpty();
             result.Interpretation.Should().Be("No specific symbols found in your dream.");

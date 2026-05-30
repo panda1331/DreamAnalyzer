@@ -23,7 +23,6 @@ namespace DreamAnalyzer2.Tests.Strategies
         [InlineData("nostradamus", "Сонник Нострадамуса")]
         public async Task AnalyzeAsync_DifferentBooks_ShouldReturnCorrectTitle(string book, string expectedTitleStart)
         {
-            // Arrange
             var strategy = new DreamBookAnalysisStrategy(_aiClientMock.Object, book);
             var aiResponse = "{\"interpretation\": \"Толкование сна\", \"mood\": \"Peaceful\"}";
 
@@ -31,10 +30,8 @@ namespace DreamAnalyzer2.Tests.Strategies
                 .Setup(x => x.GetJsonCompletionAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(aiResponse);
 
-            // Act
             var result = await strategy.AnalyzeAsync("Тест сна");
 
-            // Assert
             result.Should().NotBeNull();
             result.Title.Should().StartWith(expectedTitleStart);
         }
