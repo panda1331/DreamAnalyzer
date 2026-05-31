@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DreamAnalyzer2.Domain.Entities.Dream">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAEAAgCAABAgAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Entities\Dream.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Analysis" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DreamAnalyzer2.Domain.Entities.DreamAnalysis">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAEBAAAAAAAAAAAAAAAAAIAAAAAAIAAQBAAQ=</HashCode>
+      <FileName>Entities\DreamAnalysis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_symbols" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DreamAnalyzer2.Domain.Entities.DreamSymbol">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAEAAAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DreamSymbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DreamAnalyzer2.Domain.Entities.Entity">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DreamAnalyzer2.Domain.Entities.User">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAECAAAAAAESAAAAAIgEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_dreams" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Interface Name="DreamAnalyzer2.Domain.Interfaces.IAnalysisRepository">
+    <Position X="12" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAnalysisRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DreamAnalyzer2.Domain.Interfaces.IDreamRepository">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAAIIA=</HashCode>
+      <FileName>Interfaces\IDreamRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DreamAnalyzer2.Domain.Interfaces.ISymbolRepository">
+    <Position X="12" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAQAIIA=</HashCode>
+      <FileName>Interfaces\ISymbolRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DreamAnalyzer2.Domain.Interfaces.IUserRepository">
+    <Position X="10.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAAAIIA=</HashCode>
+      <FileName>Interfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DreamAnalyzer2.Domain.Enums.RoleType">
+    <Position X="3" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\RoleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
