@@ -29,28 +29,35 @@ namespace DreamAnalyzer2.Infrastructure.AiServices
 
         public async Task<string> GetJsonCompletionAsync(string systemPrompt, string userDreamText, CancellationToken cancellationToken = default)
         {
-            var requestBody = new
+            try
             {
-                model = _model,
-                messages = new[]
+                var requestBody = new
                 {
-                    new { role = "system", content = systemPrompt },
-                    new { role = "user",  content = userDreamText }
-                },
-            };
+                    model = _model,
+                    messages = new[]
+                    {
+                        new { role = "system", content = systemPrompt },
+                        new { role = "user",  content = userDreamText }
+                    },
+                };
 
-            var response = await _httpClient.PostAsJsonAsync("https://openrouter.ai/api/v1/chat/completions", requestBody, cancellationToken);
-            response.EnsureSuccessStatusCode();
+                var response = await _httpClient.PostAsJsonAsync("https://openrouter.ai/api/v1/chat/completions", requestBody, cancellationToken);
+                response.EnsureSuccessStatusCode();
 
-            var jsonResponse = await response.Content.ReadFromJsonAsync<JsonDocument>(cancellationToken);
+                var jsonResponse = await response.Content.ReadFromJsonAsync<JsonDocument>(cancellationToken);
 
-            var aiContentJson = jsonResponse?.RootElement
-                .GetProperty("choices")[0]
-                .GetProperty("message")
-                .GetProperty("content")
-                .GetString();
+                var aiContentJson = jsonResponse?.RootElement
+                    .GetProperty("choices")[0]
+                    .GetProperty("message")
+                    .GetProperty("content")
+                    .GetString();
 
-            return aiContentJson ?? "{}";
+                    return aiContentJson ?? "{}";
+            }
+            catch (TaskCanceledException)
+            {
+                throw new TimeoutException("AI-модель не ответила вовремя. Попробуйте позже или выберите другую стратегию.");
+            }
         }
     }
 }

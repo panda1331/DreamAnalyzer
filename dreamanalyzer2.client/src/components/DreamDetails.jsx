@@ -26,6 +26,13 @@ function DreamDetails() {
         { id: 'dreambook', label: 'Сонник' },
     ];
 
+    const moodTranslations = {
+        Peaceful: 'Спокойное',
+        Anxious: 'Тревожное',
+        NightMare: 'Кошмар',
+        Lucid: 'Осознанное'
+    };
+
     useEffect(() => {
         const fetchDream = async () => {
             try {
@@ -220,10 +227,8 @@ function DreamDetails() {
                             <h4>
                                 {strategies.find(s => s.id === analysis.strategy || s.id + 's' === analysis.strategy)?.label}
                             </h4>
-                            <span
-                                className="ai-mood-badge"
-                                style={analysis.moodColor ? { backgroundColor: analysis.moodColor, color: '#fff' } : {}}>
-                                Настроение: <b>{analysis.moodName}</b>
+                            <span className="ai-mood-badge">
+                                Настроение: <b>{moodTranslations[analysis.moodName] || analysis.moodName}</b>
                             </span>
                         </div>
 

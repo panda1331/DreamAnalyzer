@@ -1,6 +1,7 @@
 ﻿using DreamAnalyzer2.Application.DTOs.Responses;
 using DreamAnalyzer2.Application.Interfaces.Services;
 using DreamAnalyzer2.Shared.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -8,6 +9,7 @@ namespace DreamAnalyzer2.Server.Controllers
 {
     [ApiController]
     [Route("api/users")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
