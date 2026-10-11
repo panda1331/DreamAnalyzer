@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<CollectSourceInformation>false</CollectSourceInformation>
+	</RunConfiguration>
+
+	<DataCollectionRunSettings>
+		<DataCollectors>
+			<DataCollector friendlyName="Code Coverage" uri="datacollector://Microsoft/CodeCoverage/2.0">
+				<Configuration>
+					<CodeCoverage>
+						<ModulePaths>
+							<Exclude>
+								<ModulePath>.*Migrations.*</ModulePath>
+							</Exclude>
+						</ModulePaths>
+						<Sources>
+							<Exclude>
+								<Source>.*\\Migrations\\.*</Source>
+								<Source>.*\\Program\.cs</Source>
+								<Source>.*\\DependencyInjection\.cs</Source>
+								<Source>.*\.Designer\.cs</Source>
+							</Exclude>
+						</Sources>
+					</CodeCoverage>
+				</Configuration>
+			</DataCollector>
+
+			<DataCollector friendlyName="XPlat code coverage">
+				<Configuration>
+					<Format>cobertura</Format>
+					<ExcludeByFile>
+						**/Migrations/*.cs,
+						**/Program.cs,
+						**/DependencyInjection.cs
+					</ExcludeByFile>
+				</Configuration>
+			</DataCollector>
+		</DataCollectors>
+	</DataCollectionRunSettings>
+</RunSettings>

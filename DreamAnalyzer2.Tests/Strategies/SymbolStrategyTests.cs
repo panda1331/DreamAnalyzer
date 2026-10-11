@@ -56,5 +56,30 @@ namespace DreamAnalyzer2.Tests.Strategies
             result.Symbols.Should().BeEmpty();
             result.Interpretation.Should().Be("No specific symbols found in your dream.");
         }
+
+        [Theory]
+        [InlineData("Мне снилась кошка", new[] { "кошка" })]
+        [InlineData("Я видел огонь и воду", new[] { "огонь", "вода" })]
+        [InlineData("Полёт над морем", new[] { "полёт", "море" })]
+        [InlineData("Пустой сон без символов", new string[0])]
+        public async Task AnalyzeAsync_WithDifferentTexts_FindsExpectedSymbols(string dreamText, string[] expectedSymbols)
+        {
+            var symbols = new List<DreamSymbol>
+            {
+                new DreamSymbol("кошка", "Независимость", "Peaceful"),
+                new DreamSymbol("огонь", "Страсть", "Anxious"),
+                new DreamSymbol("вода", "Эмоции", "Peaceful"),
+                new DreamSymbol("полёт", "Свобода", "Lucid"),
+                new DreamSymbol("море", "Бесконечность", "Peaceful")
+            };
+
+            _symbolRepositoryMock
+                .Setup(r => r.GetAllAsync())
+                .ReturnsAsync(symbols);
+
+            var result = await _strategy.AnalyzeAsync(dreamText);
+
+            result.Symbols.Should().BeEquivalentTo(expectedSymbols);
+        }
     }
 }

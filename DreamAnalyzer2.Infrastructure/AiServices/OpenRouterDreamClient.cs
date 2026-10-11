@@ -21,6 +21,10 @@ namespace DreamAnalyzer2.Infrastructure.AiServices
                 ?? throw new ArgumentNullException("Api-key OpenRouter is not found in configuration");
             _model = configuration["OpenRouterSettings:Model"] ?? "meta-llama/llama-3.3-70b-instruct";
 
+            var baseUrl = configuration["OpenRouterSettings:BaseUrl"] ?? "https://openrouter.ai/api/v1/";
+            if (!baseUrl.EndsWith('/')) baseUrl += "/";
+            _httpClient.BaseAddress = new Uri(baseUrl);
+
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
 
             _httpClient.DefaultRequestHeaders.Add("HTTP-Referer", "http://localhost:5000");
@@ -41,7 +45,7 @@ namespace DreamAnalyzer2.Infrastructure.AiServices
                     },
                 };
 
-                var response = await _httpClient.PostAsJsonAsync("https://openrouter.ai/api/v1/chat/completions", requestBody, cancellationToken);
+                var response = await _httpClient.PostAsJsonAsync("chat/completions", requestBody, cancellationToken);
                 response.EnsureSuccessStatusCode();
 
                 var jsonResponse = await response.Content.ReadFromJsonAsync<JsonDocument>(cancellationToken);

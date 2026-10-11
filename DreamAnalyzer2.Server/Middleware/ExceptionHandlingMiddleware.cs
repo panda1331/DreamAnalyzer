@@ -1,5 +1,6 @@
 ﻿using DreamAnalyzer2.Shared.Shared;
 using System.Net;
+using System.Security.Authentication;
 using System.Text.Json;
 
 namespace DreamAnalyzer2.Server.Middleware
@@ -48,10 +49,12 @@ namespace DreamAnalyzer2.Server.Middleware
             return exception switch
             {
                 InvalidCredentialsException => (int)HttpStatusCode.Unauthorized,
+                InvalidCredentialException => (int)HttpStatusCode.Unauthorized,
                 UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized,
                 ArgumentException => (int)HttpStatusCode.BadRequest,
                 ValidationException => (int)HttpStatusCode.BadRequest,
                 KeyNotFoundException => (int)HttpStatusCode.NotFound,
+                NotFoundException => (int)HttpStatusCode.NotFound,
                 _ => (int)HttpStatusCode.InternalServerError
             };
         }

@@ -6,12 +6,12 @@ using DreamAnalyzer2.Application.Interfaces.Services;
 using DreamAnalyzer2.Domain.Entities;
 using DreamAnalyzer2.Domain.Enums;
 using DreamAnalyzer2.Domain.Interfaces;
+using DreamAnalyzer2.Shared.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 using System.Security.AccessControl;
-using System.Security.Authentication;
 using System.Text;
 
 namespace DreamAnalyzer2.Application.Services
@@ -35,11 +35,11 @@ namespace DreamAnalyzer2.Application.Services
         {
             var user = await _userRepository.GetByEmailAsync(loginDto.Email);
             if (user == null)
-                throw new InvalidCredentialException("No account found with this email. Please register.");
+                throw new InvalidCredentialsException("No account found with this email. Please register.");
             var isCorrectPassword = _passwordHasher.VerifyPassword(loginDto.Password, user.PasswordHash);
 
             if (!isCorrectPassword)
-                throw new InvalidCredentialException("Wrong password. Please try again.");
+                throw new InvalidCredentialsException("Wrong password. Please try again.");
 
             var token = _tokenGenerator.GenerateToken(user.Id, user.Email, user.Role.ToString());
 
@@ -56,7 +56,7 @@ namespace DreamAnalyzer2.Application.Services
         {
             var existingUser = await _userRepository.GetByEmailAsync(registerDto.Email);
             if (existingUser != null)
-                throw new InvalidCredentialException("User with this email already exists.");
+                throw new InvalidCredentialsException("User with this email already exists.");
             var passwordHash = _passwordHasher.HashPassword(registerDto.Password);
             var user = new User(registerDto.Username, registerDto.Email, RoleType.User);
             user.SetPasswordHash(passwordHash);

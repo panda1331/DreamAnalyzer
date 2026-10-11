@@ -5,11 +5,11 @@ using DreamAnalyzer2.Application.Services;
 using DreamAnalyzer2.Domain.Entities;
 using DreamAnalyzer2.Domain.Enums;
 using DreamAnalyzer2.Domain.Interfaces;
+using DreamAnalyzer2.Shared.Shared;
 using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Security.Authentication;
 using System.Text;
 
 namespace DreamAnalyzer2.Tests.Services
@@ -88,9 +88,10 @@ namespace DreamAnalyzer2.Tests.Services
 
             Func<Task> act = async () => await _authService.RegisterAsync(registerDto);
 
-            await act.Should().ThrowAsync<InvalidCredentialException>()
+            await act.Should().ThrowAsync<InvalidCredentialsException>()
                 .WithMessage("User with this email already exists.");
         }
+
 
         [Fact]
         public async Task LoginAsync_WithValidCredentials_ReturnsAuthResponse()
@@ -145,7 +146,7 @@ namespace DreamAnalyzer2.Tests.Services
 
             Func<Task> act = async () => await _authService.LoginAsync(loginDto);
 
-            await act.Should().ThrowAsync<InvalidCredentialException>()
+            await act.Should().ThrowAsync<InvalidCredentialsException>()
                 .WithMessage("Wrong password. Please try again.");
         }
 
@@ -164,8 +165,43 @@ namespace DreamAnalyzer2.Tests.Services
 
             Func<Task> act = async () => await _authService.LoginAsync(loginDto);
 
-            await act.Should().ThrowAsync<InvalidCredentialException>()
+            await act.Should().ThrowAsync<InvalidCredentialsException>()
                 .WithMessage("No account found with this email. Please register.");
+        }
+
+        [Theory]
+        [InlineData("Test123")]        
+        [InlineData("wrong")]          
+        [InlineData("")]               
+        public async Task LoginAsync_WithDifferentPasswords_ReturnsExpectedResult(string password)
+        {
+            var loginDto = new LoginDto
+            {
+                Email = "test@example.com",
+                Password = password
+            };
+
+            var user = new User("testuser", "test@example.com", RoleType.User);
+            user.SetPasswordHash("hashedPassword");
+
+            _userRepositoryMock
+                .Setup(r => r.GetByEmailAsync(loginDto.Email, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(user);
+
+            _passwordHasherMock
+                .Setup(h => h.VerifyPassword(password, user.PasswordHash))
+                .Returns(password == "Test123");
+
+            _tokenGeneratorMock
+                .Setup(g => g.GenerateToken(user.Id, user.Email, user.Role.ToString()))
+                .Returns("token");
+
+            Func<Task> act = async () => await _authService.LoginAsync(loginDto);
+
+            if (password == "Test123")
+                await act.Should().NotThrowAsync();
+            else
+                await act.Should().ThrowAsync<InvalidCredentialsException>();
         }
     }
 }

@@ -44,5 +44,10 @@ namespace DreamAnalyzer2.Domain.Entities
                 throw new ArgumentNullException("Password hash can't be empty");
             PasswordHash = passwordHash;
         }
+
+        public void SetRole(RoleType roleType)
+        {
+            Role = roleType;
+        }
     }
 }
