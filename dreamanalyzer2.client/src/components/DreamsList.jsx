@@ -87,20 +87,22 @@ function DreamsList() {
                 )}
             </div>
 
-            {filteredDreams && filteredDreams.length === 0 && (
-                <p className="no-dreams">Сны не найдены</p>
-            )}
-
-            {dreams && dreams.length === 0 && <p>У вас пока нет снов</p>}
+            {dreams && dreams.length === 0 ? (
+                <p className="no-dreams">У вас пока нет снов</p>
+            ) : filteredDreams && filteredDreams.length === 0 ? (
+                <p className="no-dreams">По вашему запросу ничего не найдено</p>
+            ) : null}
 
             <div className="dreamsList">
                 {filteredDreams && filteredDreams.map(dream => (
-                    <Link to={`/dreams/${dream.id}`}> <div key={dream.id} className="dreamCard">
-                        <div className="dreamCardContainerHeader">
-                            <h3>{dream.title}</h3>
+                    <Link key={dream.id} to={`/dreams/${dream.id}`}>
+                        <div className="dreamCard">
+                            <div className="dreamCardContainerHeader">
+                                <h3>{dream.title}</h3>
+                            </div>
+                            <p className="dream-content-text">{dream.content}</p>
                         </div>
-                        <p className="dream-content-text">{dream.content}</p>
-                    </div></Link>
+                    </Link>
                 ))}
             </div>
         </div>

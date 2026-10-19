@@ -24,7 +24,7 @@
     transition: all 0.2s;
 }
 
-    .admin-tabs button:hover {
+.admin-tabs button:hover {
     color: var(--accent-purple, #8b5cf6);
     background: rgba(139, 92, 246, 0.1);
 }
@@ -39,6 +39,8 @@
     border-radius: 16px;
     padding: 20px;
     border: 1px solid var(--border-color, #334155);
+    overflow: auto;
+    width: 100%;
 }
 
 .admin-table-container h2 {
@@ -100,4 +102,47 @@
 
 .delete-btn:hover {
     background: rgba(239, 68, 68, 0.4);
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 10px;
+    }
+
+    .admin-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .admin-tabs button {
+        flex: 1; 
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .admin-table th:first-child,
+    .admin-table td:first-child {
+        display: none;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    .admin-table td {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .view-btn, .delete-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        margin: 2px 0;
+        display: block; 
+        width: 100%;
+    }
 }

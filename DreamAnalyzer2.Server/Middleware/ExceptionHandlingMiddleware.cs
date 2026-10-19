@@ -55,6 +55,7 @@ namespace DreamAnalyzer2.Server.Middleware
                 ValidationException => (int)HttpStatusCode.BadRequest,
                 KeyNotFoundException => (int)HttpStatusCode.NotFound,
                 NotFoundException => (int)HttpStatusCode.NotFound,
+                ForbiddenException => (int)HttpStatusCode.Forbidden,
                 _ => (int)HttpStatusCode.InternalServerError
             };
         }

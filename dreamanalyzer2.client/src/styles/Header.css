@@ -1,8 +1,28 @@
 .header {
-    padding: 30px 0;
+    padding: 20px 0;
     display: flex;
-    justify-content: center;
-    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.burger-menu {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-main, #f8fafc);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
 }
 
 .headerTitle {
@@ -11,6 +31,9 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+    display: inline-block; 
+    line-height: 1.5; 
+    padding-bottom: 4px;
 }
 
 .headerTitle:hover {
@@ -20,12 +43,6 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-}
-
-.navigation {
-    margin-left: auto;
-    display: flex;
-    gap: 20px;
 }
 
 .navigation button {
@@ -61,7 +78,7 @@
 
 @media (max-width: 1024px) {
     .header {
-        padding: 16px 24px;
+        padding: 16px 0;
     }
 
     .headerTitle {
@@ -81,36 +98,49 @@
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
-        gap: 16px;
-        padding: 16px;
-        position: static;
+        align-items: stretch;
+        padding: 16px 0;
     }
 
-    .headerTitle {
-        font-size: 1.3rem;
-        text-align: center;
+    .header-top {
+        width: 100%;
+    }
+
+    .burger-menu {
+        display: block;
     }
 
     .navigation {
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        margin-top: 16px;
         gap: 12px;
+        background: var(--bg-card, #1e293b);
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color, #334155);
+    }
+
+    .navigation.active {
+        display: flex; 
     }
 
     .navigation button {
-        padding: 8px 18px;
-        font-size: 0.85rem;
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .header {
-        padding: 12px;
+        padding: 12px 0;
         gap: 12px;
     }
 
     .headerTitle {
-        font-size: 1.1rem;
+        font-size: 1.4rem;
     }
 
     .navigation {
@@ -119,7 +149,7 @@
 
     .navigation button {
         padding: 6px 12px;
-        font-size: 0.75rem;
+        font-size: 0.95rem;
     }
 }
 
@@ -136,7 +166,7 @@
 
 @media (min-width: 1600px) {
     .header {
-        padding: 24px 60px;
+        padding: 24px 0;
     }
 
     .headerTitle {

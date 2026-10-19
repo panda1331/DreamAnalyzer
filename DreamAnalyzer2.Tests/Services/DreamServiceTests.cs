@@ -64,7 +64,7 @@ namespace DreamAnalyzer2.Tests.Services
         }
 
         [Fact]
-        public async Task DeleteDreamAsync_UserDeletingAnothersDream_ThrowsValidationException()
+        public async Task DeleteDreamAsync_UserDeletingAnothersDream_ThrowsForbiddenException()
         {
             var ownerId = Guid.NewGuid();
             var anotherUserId = Guid.NewGuid();
@@ -77,7 +77,7 @@ namespace DreamAnalyzer2.Tests.Services
 
             Func<Task> act = async () => await _dreamService.DeleteDreamAsync(anotherUserId, dreamId, isAdmin: false);
 
-            await act.Should().ThrowAsync<ValidationException>()
+            await act.Should().ThrowAsync<ForbiddenException>()
                 .WithMessage("You can delete only your dreams");
         }
 
@@ -116,7 +116,7 @@ namespace DreamAnalyzer2.Tests.Services
         }
 
         [Fact]
-        public async Task GetDreamByIdAsync_UserViewingAnothersDream_ThrowsValidationException()
+        public async Task GetDreamByIdAsync_UserViewingAnothersDream_ThrowsForbiddenException()
         {
             var ownerId = Guid.NewGuid();
             var anotherUserId = Guid.NewGuid();
@@ -129,7 +129,7 @@ namespace DreamAnalyzer2.Tests.Services
 
             Func<Task> act = async () => await _dreamService.GetDreamByIdAsync(anotherUserId, dreamId, isAdmin: false);
 
-            await act.Should().ThrowAsync<ValidationException>()
+            await act.Should().ThrowAsync<ForbiddenException>()
                 .WithMessage("You can only view your own dreams");
         }
 
@@ -162,7 +162,7 @@ namespace DreamAnalyzer2.Tests.Services
         }
 
         [Fact]
-        public async Task UpdateDreamAsync_UserUpdatingAnothersDream_ThrowsValidationException()
+        public async Task UpdateDreamAsync_UserUpdatingAnothersDream_ThrowsForbiddenException()
         {
             var ownerId = Guid.NewGuid();
             var anotherUserId = Guid.NewGuid();
@@ -182,7 +182,7 @@ namespace DreamAnalyzer2.Tests.Services
 
             Func<Task> act = async () => await _dreamService.UpdateDreamAsync(anotherUserId, dreamId, updateDto);
 
-            await act.Should().ThrowAsync<ValidationException>()
+            await act.Should().ThrowAsync<ForbiddenException>()
                 .WithMessage("You can update only your dreams");
 
             _dreamRepositoryMock.Verify(r => r.Update(It.IsAny<Dream>()), Times.Never);

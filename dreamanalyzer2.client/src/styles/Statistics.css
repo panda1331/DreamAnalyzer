@@ -161,8 +161,13 @@
         gap: 12px;
     }
 
+    .stats-section {
+        padding: 16px;
+    }
+
     .weekday-bar {
         flex-wrap: wrap;
+        align-items: center;
     }
 
     .weekday-name {
@@ -170,25 +175,80 @@
     }
 
     .bar-container {
-        width: 100%;
+        flex: 1;
+        width: auto;
     }
 
-    .stats-section {
-        padding: 16px;
+    .weekday-count {
+        width: auto;
+    }
+
+    .stats-section h3 {
+        font-size: 1rem;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
+    .stats-section {
+        padding: 12px;
+    }
+
+        .stats-section h3 {
+            font-size: 0.9rem;
+        }
+
     .stat-value {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+    }
+
+    .weekday-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .weekday-name {
+        width: 100%;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .bar-container {
+        flex: 1; 
+        width: auto;
+        min-width: 0;
+        height: 20px;
+    }
+
+    .weekday-count {
+        width: 20px; 
+        text-align: right;
+        font-size: 0.8rem;
     }
 
     .mood-item {
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        padding: 6px 12px;
     }
 
-    .symbols-tags {
-        justify-content: center;
+    .symbol-name {
+        font-size: 0.75rem;
+    }
+
+    .symbol-count {
+        font-size: 0.65rem;
+        padding: 2px 8px;
     }
 }

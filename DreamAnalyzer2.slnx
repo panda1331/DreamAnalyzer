@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="DreamAnalyzer.UI.Tests/DreamAnalyzer.UI.Tests.csproj" />
   <Project Path="DreamAnalyzer2.Application/DreamAnalyzer2.Application.csproj" />
   <Project Path="dreamanalyzer2.client/dreamanalyzer2.client.esproj">
     <Build />

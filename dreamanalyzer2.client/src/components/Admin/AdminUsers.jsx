@@ -67,7 +67,7 @@ function AdminUsers() {
                             <td>{user.id?.slice(0, 8)}...</td>
                             <td>{user.username}</td>
                             <td>{user.email}</td>
-                            <td>{user.registryDate}</td>
+                            <td>{user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU') : '—'}</td>
                             <td>{user.role === 'Admin' ? 'Админ' : 'Пользователь'}</td>
                             <td>
                                 <button className="delete-btn" onClick={() => deleteUser(user.id)}>Удалить</button>

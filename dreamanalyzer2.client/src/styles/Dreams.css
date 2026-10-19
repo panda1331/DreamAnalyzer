@@ -7,7 +7,7 @@
 
 .dreamsList {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 24px;
     margin: 24px 0 12px;
     width: 100%;
@@ -37,9 +37,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    flex: 1;
+/*    flex: 1;*/
     word-break: break-word;
 }
 
@@ -69,16 +69,17 @@
     background: var(--accent-purple, #5b21b6);
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 8px;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
     box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .dreamTitleContainerCreateBtn:hover {
@@ -107,10 +108,9 @@
 }
 
 .buttons {
-    right: 0;
-    position: absolute;
     display: flex;
-    gap: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .buttons button {
@@ -401,20 +401,64 @@
 
 @media (max-width: 768px) {
     .detailsContainer {
-        padding: 16px;
+        padding: 16px; 
+        margin: 16px 0;
+    }
+
+    .dreamCardContainerHeader {
+        margin-bottom: 8px;
+    }
+
+    .dreamCard {
+        height: auto; 
+        min-height: 140px; 
+        padding-bottom: 12px;
+    }
+
+    .dreamCard p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        -webkit-line-clamp: 3;
+    }
+
+    .dreamCardContainerHeader h3 {
+        font-size: 1rem; 
+        margin-bottom: 8px;
     }
 
     .detailsContainer h4 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .detailsContainer p {
+        margin-bottom: 8px;
+    }
+
+    .detailsContainer p:last-child {
+        margin-bottom: 0;
+    }
+
+    .dreamTitleContainerCreateBtn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 
     .strategy-tabs {
-        gap: 8px;
+        flex-wrap: nowrap;
+        overflow-x: auto; 
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .strategy-tabs::-webkit-scrollbar {
+        display: none;
     }
 
     .strategy-tab-btn {
-        padding: 6px 12px;
-        font-size: 0.75rem;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
 
     .ai-result-header {
@@ -428,7 +472,69 @@
 
     .book-selector-container {
         flex-direction: column;
+        align-items: center;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .book-selector-container label {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .book-options {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+        margin: 8px 0;
+    }
+
+    .book-option-btn {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+
+    .book-cancel-btn {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        margin-top: 4px;
+    }
+
+    .dreamTitleContainer {
+        flex-direction: column; 
         align-items: flex-start;
+        gap: 16px; 
+    }
+
+    .buttons {
+        width: 100%;
+        justify-content: flex-start; 
+    }
+
+    .buttons button {
+        flex: 1;
+    }
+
+    .search-container {
+        padding: 0 12px;
+        margin-bottom: 16px;
+        max-width: 100%;
+    }
+
+    .search-input {
+        padding: 16px 45px 16px 20px;
+        font-size: 16px;
+        height: 40px; 
+        border-radius: 20px;
+    }
+
+    .search-clear {
+        right: 20px;
+        font-size: 1.2rem;
     }
 }
 
@@ -519,4 +625,28 @@
     text-align: center;
     padding: 40px;
     color: var(--text-muted, #94a3b8);
+}
+
+@media (max-width: 480px) {
+    .dreams-container {
+        padding: 0 8px;
+    }
+
+    .dreamsList {
+        gap: 12px; 
+    }
+
+    .search-container {
+        padding: 0;
+    }
+
+    .search-input {
+        padding: 14px 40px 14px 16px;
+        height: 36px;
+    }
+
+    .dreamTitleContainerCreateBtn {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
 }

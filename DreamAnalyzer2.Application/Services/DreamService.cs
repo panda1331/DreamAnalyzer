@@ -47,7 +47,7 @@ namespace DreamAnalyzer2.Application.Services
             if (dream == null)
                 throw new NotFoundException("No such dream");
             if (!isAdmin && dream.UserId != userId)
-                throw new ValidationException("You can delete only your dreams");
+                throw new ForbiddenException("You can delete only your dreams");
 
             await _repository.DeleteAsync(id);
             await _unitOfWork.SaveChangesAsync();
@@ -77,7 +77,7 @@ namespace DreamAnalyzer2.Application.Services
             if (dream == null)
                 throw new NotFoundException("No such dream");
             if (!isAdmin && dream.UserId != userId)
-                throw new ValidationException("You can only view your own dreams");
+                throw new ForbiddenException("You can only view your own dreams");
 
             return ToResponse(dream);
         }
@@ -88,7 +88,7 @@ namespace DreamAnalyzer2.Application.Services
             if (dream == null)
                 throw new NotFoundException("No such dream");
             if (dream.UserId != userId)
-                throw new ValidationException("You can update only your dreams");
+                throw new ForbiddenException("You can update only your dreams");
 
             dream.Update(updateDreamDto.Title, updateDreamDto.Content, updateDreamDto.DreamDate);
             _repository.Update(dream);

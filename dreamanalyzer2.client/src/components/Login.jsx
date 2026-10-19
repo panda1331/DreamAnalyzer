@@ -37,11 +37,11 @@ function Login() {
         <form className="formStyle" onSubmit={ handleSubmit }>
             <div className="inputElement">
                 <label htmlFor="emailInput" >Email: </label>
-                <input required="true" id="emailInput"type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input required="true" id="emailInput" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="inputElement">
                 <label htmlFor="passwordInput">Пароль: </label>
-                <input required="true" id="passwordInput"type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input required="true" id="passwordInput" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button className="submitBtn" type="submit">Login</button>
             <Link to="/register"><p>У вас нету аккаунта? Нажмите здесь, чтобы зарегистрироваться</p></Link> 

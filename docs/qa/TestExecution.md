@@ -17,9 +17,9 @@
 | **TC-07** | Создание сна (валидные данные) | Passed | 200 OK, ID сна создан. | ![tc-07](screens/tc-07.png) |
 | **TC-08** | Создание сна с пустым заголовком | Passed | 400 Bad Request. | ![tc-08](screens/tc-08.png) |
 | **TC-09** | Чтение своего сна по ID | Passed | 200 OK, сон получен. | ![tc-09](screens/tc-09.png) |
-| **TC-10** | IDOR (чтение чужого сна) | Passed | 400 Bad Request. | ![tc-10](screens/tc-10.png) |
+| **TC-10** | IDOR (чтение чужого сна) | Passed | 403 Forbidden. | ![tc-10](screens/tc-10.png) |
 | **TC-11** | Редактирование своего сна | Passed | 200 OK, данные обновлены. | ![tc-11](screens/tc-11.png) |
-| **TC-12** | IDOR (редактирование чужого сна) | Passed | 400 Bad Request. | ![tc-12](screens/tc-12.png) |
+| **TC-12** | IDOR (редактирование чужого сна) | Passed | 403 Forbidden. | ![tc-12](screens/tc-12.png) |
 | **TC-13** | Анализ сна (Словарь символов) | Passed | 200 OK, символы найдены. | ![tc-13](screens/tc-13.png) |
 | **TC-14** | Анализ сна (Фрейд, AI) | Passed | 200 OK, текст получен. | ![tc-14](screens/tc-14.png) |
 | **TC-15** | Анализ сна (Юнг, AI) | Passed | 200 OK, текст получен. | ![tc-15](screens/tc-15.png) |
@@ -33,11 +33,12 @@
 | **TC-23** | Удаление своего сна | Passed | 200 OK, сон удален. | ![tc-23](screens/tc-23.png) |
 | **TC-24** | Обработка ошибок (битый JSON) | Passed | 400 Bad Request (JSON). | ![tc-24](screens/tc-24.png) |
 | **TC-25** | Доступность Swagger UI | Passed | 200 OK, Swagger открыт. | ![tc-25](screens/tc-25.png) |
+| **TC-26** | Запрос к несуществующему эндпоинту | Passed | 404 Not Found. | ![tc-26](screens/tc-26.png) |
 
 ---
 **Итоговая статистика:**
-* Всего тест-кейсов: 25
-* Passed: 25
+* Всего тест-кейсов: 26
+* Passed: 26
 * Failed: 0
 * Покрытие (T_E): 100%
 * Успешность (T_SP): 100%
