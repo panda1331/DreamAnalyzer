@@ -20,7 +20,8 @@ namespace DreamAnalyzer2.Tests.Integration
             : this(_ => new HttpResponseMessage(status)
             {
                 Content = new StringContent(content, Encoding.UTF8, "application/json")
-            }) { }
+            })
+        { }
 
         public List<HttpRequestMessage> Requests { get; } = new();
 

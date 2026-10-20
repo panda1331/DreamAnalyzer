@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DreamAnalyzer.UI.Tests.Pages
 {
-    public class DreamsPage 
+    public class DreamsPage
     {
         private readonly IPage _page;
 

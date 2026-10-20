@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import '../../styles/Admin.css';
 
 
@@ -7,11 +7,7 @@ function AdminUsers() {
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
 
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
-    const fetchUsers = async () => {
+    const fetchUsers = useCallback(async () => {
         try {
             const response = await fetch('/api/admin/users', {
                 headers: {
@@ -27,7 +23,12 @@ function AdminUsers() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [token]); 
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchUsers();
+    }, [fetchUsers]); 
 
     const deleteUser = async (id) => {
         if (!confirm('Удалить пользователя?')) return;

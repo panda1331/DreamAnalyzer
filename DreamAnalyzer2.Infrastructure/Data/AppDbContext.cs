@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DreamAnalyzer2.Infrastructure.Data
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Dream> Dreams { get; set; }
         public DbSet<User> Users { get; set; }

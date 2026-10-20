@@ -46,6 +46,6 @@ namespace DreamAnalyzer2.Infrastructure
             services.AddScoped<DreamBookAnalysisStrategy>();
 
             return services;
-        } 
+        }
     }
 }

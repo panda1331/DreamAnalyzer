@@ -109,7 +109,7 @@
 
 ---
 
-### Use Case диаграмма (Mermaid)
+### Use Case диаграмма
 
 ```mermaid
 flowchart LR

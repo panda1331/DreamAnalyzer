@@ -13,7 +13,7 @@ using System.Text;
 
 namespace DreamAnalyzer2.Server
 {
-    public partial class Program  
+    public partial class Program
     {
         public static void Main(string[] args)
         {

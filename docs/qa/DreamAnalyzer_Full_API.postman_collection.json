@@ -975,6 +975,85 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "TC_27.1 Create Dream for Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\npm.test(\"Response has dream id\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.data).to.have.property(\"id\");\r\n    pm.environment.set(\"dreamIdAdmin\", jsonData.data.id);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_userA}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Сон\", \r\n    \"content\": \"Мне снилась кошка\", \r\n    \"dreamDate\": \"2023-10-18T12:00:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/Dreams",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Dreams"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC-27 Admin Delete Dream",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_admin}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/dreams/{{dreamIdAdmin}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "dreams",
+                "{{dreamIdAdmin}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },

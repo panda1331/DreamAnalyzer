@@ -170,9 +170,9 @@ namespace DreamAnalyzer2.Tests.Services
         }
 
         [Theory]
-        [InlineData("Test123")]        
-        [InlineData("wrong")]          
-        [InlineData("")]               
+        [InlineData("Test123")]
+        [InlineData("wrong")]
+        [InlineData("")]
         public async Task LoginAsync_WithDifferentPasswords_ReturnsExpectedResult(string password)
         {
             var loginDto = new LoginDto

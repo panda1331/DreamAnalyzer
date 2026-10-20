@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DreamAnalyzer2.Tests.Integration
 {
-    public class RepositoryIntegrationTests 
+    public class RepositoryIntegrationTests
     {
         private static AppDbContext CreateContext()
         {

@@ -56,7 +56,7 @@ namespace DreamAnalyzer2.Infrastructure.AiServices
                     .GetProperty("content")
                     .GetString();
 
-                    return aiContentJson ?? "{}";
+                return aiContentJson ?? "{}";
             }
             catch (TaskCanceledException)
             {

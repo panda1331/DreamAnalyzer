@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/Dreams.css'
 function DreamsList() {
     const [dreams, setDreams] = useState(null);
-    const [filteredDreams, setFilteredDreams] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
@@ -44,18 +43,10 @@ function DreamsList() {
         fetchDreams();
     }, [token]);
 
-    useEffect(() => {
-        if (!dreams) return;
-
-        if (searchTerm.trim() === '') {
-            setFilteredDreams(dreams);
-        } else {
-            const filtered = dreams.filter(dream =>
-                dream.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                dream.content.toLowerCase().includes(searchTerm.toLowerCase()));
-            setFilteredDreams(filtered);
-        }
-    }, [searchTerm, dreams]);
+    const filteredDreams = dreams ? dreams.filter(dream =>
+        dream.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        dream.content.toLowerCase().includes(searchTerm.toLowerCase())
+    ) : null;
 
     if (loading) {
         return (

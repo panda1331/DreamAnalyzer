@@ -34,3 +34,4 @@
 | **TC-24** | Высокий | FR-20 | API | Обработка ошибок (битый JSON) | `Headers:`<br>`Bearer {{token_userA}}`<br>`Body:`<br>`{"title": "Сон", "content": ` | 1. Отправить POST на `/api/Dreams` | 400 Bad Request. Ответ в формате JSON. |
 | **TC-25** | Высокий | FR-21 | API | Доступность Swagger UI | `URL:`<br>`{{baseUrl}}/swagger` | 1. Открыть в браузере. | 200 OK. Отображается Swagger UI. |
 | **TC-26** | Высокий | FR-20 | API | Запрос к несуществующему эндпоинту | `URL:`<br>`{{baseUrl}}/api/nonexistent` | 1. Отправить GET-запрос. | 404 Not Found. |
+| **TC-27** | Высокий | FR-18 | Админ-панель | Удаление сна Админом | `Headers:`<br>`Bearer {{token_admin}}` | 1. Отправить DELETE-запрос на `/api/admin/dreams/{{dreamId}}` | 200 OK. Сон удален из системы. |

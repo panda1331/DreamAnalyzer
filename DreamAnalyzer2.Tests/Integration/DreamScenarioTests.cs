@@ -57,7 +57,7 @@ namespace DreamAnalyzer2.Tests.Integration
             var createData = await createResp.Content
                 .ReadFromJsonAsync<ApiResponse<DreamResponseDto>>();
             var dreamId = createData!.Data.Id;
-            dreamId.Should().NotBeEmpty();  
+            dreamId.Should().NotBeEmpty();
 
             var analyzeResp = await _client.PostAsync(
                 $"/api/Dreams/{dreamId}/analyze?strategyType=symbols", null);
@@ -65,10 +65,10 @@ namespace DreamAnalyzer2.Tests.Integration
 
             var analysisData = await analyzeResp.Content
                 .ReadFromJsonAsync<ApiResponse<AnalysisResponseDto>>();
-            analysisData!.Data.Strategy.Should().Be("symbols"); 
+            analysisData!.Data.Strategy.Should().Be("symbols");
 
             var deleteResp = await _client.DeleteAsync($"/api/Dreams/{dreamId}");
-            deleteResp.StatusCode.Should().Be(HttpStatusCode.OK);  
+            deleteResp.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var getResp = await _client.GetAsync($"/api/Dreams/{dreamId}");
 
@@ -117,7 +117,7 @@ namespace DreamAnalyzer2.Tests.Integration
             var token = await RegisterAndGetTokenAsync();
             _client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
-            
+
             var createResp = await _client.PostAsJsonAsync("/api/Dreams",
                 new CreateDreamDto
                 {

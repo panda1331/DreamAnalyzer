@@ -21,7 +21,7 @@ namespace DreamAnalyzer2.Server.Middleware
             try
             {
                 await _next(context);
-            } 
+            }
             catch (Exception e)
             {
                 _logger.LogError(e, "An error occured: {Message}", e.Message);

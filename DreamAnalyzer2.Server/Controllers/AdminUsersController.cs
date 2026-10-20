@@ -37,6 +37,6 @@ namespace DreamAnalyzer2.Server.Controllers
             await _userService.DeleteUserAsync(id);
             return Ok(ApiResponse<string>.SuccessResponse("User deleted"));
         }
-        
+
     }
 }

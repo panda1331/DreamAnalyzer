@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DreamAnalyzer2.Application.Interfaces.Services
 {
-    public interface IDreamService 
+    public interface IDreamService
     {
         Task<DreamResponseDto> CreateDreamAsync(Guid userId, CreateDreamDto createDreamDto);
         Task<DreamResponseDto> UpdateDreamAsync(Guid userId, Guid id, UpdateDreamDto updateDreamDto);

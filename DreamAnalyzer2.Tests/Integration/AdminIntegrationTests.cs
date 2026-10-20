@@ -64,7 +64,7 @@ namespace DreamAnalyzer2.Tests.Integration
             resp.StatusCode.Should().Be(HttpStatusCode.OK);
             var data = await resp.Content.ReadFromJsonAsync<ApiResponse<List<UserResponseDto>>>();
             data!.Success.Should().BeTrue();
-            data.Data.Should().NotBeEmpty();  
+            data.Data.Should().NotBeEmpty();
         }
 
         [Fact]

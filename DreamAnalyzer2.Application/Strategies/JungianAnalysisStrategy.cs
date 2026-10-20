@@ -64,7 +64,7 @@ namespace DreamAnalyzer2.Application.Strategies
                 Title = string.Empty,
                 Interpretation = interpretation,
                 MoodName = moodName,
-                Strategy = "jungian", 
+                Strategy = "jungian",
                 Symbols = symbols,
             };
         }

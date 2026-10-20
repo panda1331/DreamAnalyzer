@@ -15,7 +15,6 @@ function DreamDetails() {
     const [aiLoading, setAiLoading] = useState(false);
     const [aiError, setAiError] = useState(null);
     const [activeStrategy, setActiveStrategy] = useState(null);
-    const [selectedBook, setSelectedBook] = useState('miller');
     const [showDreamBookSelector, setShowDreamBookSelector] = useState(false);
 
     const strategies = [
@@ -65,7 +64,6 @@ function DreamDetails() {
     };
 
     const handleBookSelect = async (bookType) => {
-        setSelectedBook(bookType);
         setShowDreamBookSelector(false);
         await performAnalysis('dreambook', bookType);
     };
@@ -114,11 +112,6 @@ function DreamDetails() {
         await performAnalysis(strategyType, null);
     };
 
-    const handleBookChange = (e) => {
-        const newBook = e.target.value;
-        setSelectedBook(newBook);
-        handleAnalyzeClick('dreambook', newBook);
-    };
 
     const handleDeleteClick = () => {
         setShowModal(true);

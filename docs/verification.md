@@ -83,7 +83,7 @@
 | NFR-04 | JWT 24 ч, HS256 | CR: `JwtTokenGenerator.cs` | Да |
 | NFR-05 | Адаптивность от 320px | UI: DevTools | Да |
 | NFR-06 | Тёмная тема | UI | Да |
-| NFR-07 | Покрытие тестами ≥ 70% | Coverlet report | Да (86,7%) |
+| NFR-07 | Покрытие тестами ≥ 70% | Coverlet report | Да (93%) |
 | NFR-08 | Замена AI-провайдера | CR: `IDreamAiClient` | Да |
 | NFR-09 | Обработка ошибок AI | UI: таймаут → понятное сообщение | Да (после fix) |
 | NFR-10 | Секреты вне репозитория | CR: `dotnet user-secrets list` | Да |

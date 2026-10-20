@@ -33,7 +33,7 @@ namespace DreamAnalyzer2.Domain.Entities
             Analysis = analysis;
         }
 
-        public void Update(string title, string content,  DateTime dreamdate)
+        public void Update(string title, string content, DateTime dreamdate)
         {
             Title = title;
             Content = content;

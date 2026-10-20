@@ -22,7 +22,7 @@ namespace DreamAnalyzer2.Application.Strategies
         {
             string authorName = "Миллера";
             string authorStyle = "аналитический, практичный, связывающий бытовые детали с житейскими предзнаменованиями";
-            
+
             switch (_selectedBook.ToLower().Trim())
             {
                 case "vanga":

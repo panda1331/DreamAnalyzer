@@ -72,7 +72,7 @@ namespace DreamAnalyzer2.Application.Strategies
                 Title = string.Empty,
                 Interpretation = interpretation,
                 MoodName = moodName,
-                Strategy = "cognitive", 
+                Strategy = "cognitive",
                 Symbols = symbols,
             };
         }

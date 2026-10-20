@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/Admin.css';
 
@@ -7,11 +7,7 @@ function AdminDreams() {
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
 
-    useEffect(() => {
-        fetchDreams();
-    }, []);
-
-    const fetchDreams = async () => {
+    const fetchDreams = useCallback(async () => {
         try {
             const response = await fetch('/api/admin/dreams', {
                 headers: {
@@ -19,14 +15,20 @@ function AdminDreams() {
                 }
             });
             const data = await response.json();
-            if (response.ok)
+            if (response.ok) {
                 setDreams(data.data);
+            }
         } catch (err) {
             console.error(err);
         } finally {
             setLoading(false);
         }
-    };
+    }, [token]);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchDreams();
+    }, [fetchDreams]);
 
     const deleteDream = async (id) => {
         if (!confirm('Удалить сон?')) return;

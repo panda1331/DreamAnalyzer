@@ -29,8 +29,9 @@
 1. `SuccessLogin_RedirectsToDreamsPage` — позитивный логин и проверка перехода на страницу снов.
 2. `Login_WithWrongPassword_ShowsAlert` — негативный логин, проверка текста ошибки в alert и отсутствия перехода.
 3. `CreateDream_Success_AppearsInList` — создание сна через UI и проверка его отображения в списке.
+4. `SearchDream_FiltersResults` — проверка работы поиска (фильтрации списка снов).
 
-*Скриншот успешного прогона (3 теста):*
+*Скриншот успешного прогона (4 теста):*
 ![Playwright Test](screens/playwright-run.png)
 
 *Пример скриншота, автоматически сохраненного при падении теста (доказательство работы TearDown):*

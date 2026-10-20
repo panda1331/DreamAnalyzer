@@ -21,7 +21,7 @@ namespace DreamAnalyzer2.Infrastructure.Repositories
         {
             if (dream == null)
                 throw new ArgumentNullException(nameof(dream));
-            await  _context.Dreams.AddAsync(dream, cancellationToken);
+            await _context.Dreams.AddAsync(dream, cancellationToken);
         }
 
         public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)

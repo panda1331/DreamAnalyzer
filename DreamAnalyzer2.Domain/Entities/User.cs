@@ -26,7 +26,7 @@ namespace DreamAnalyzer2.Domain.Entities
 
         public void AddDream(Dream dream)
         {
-            if (dream == null) 
+            if (dream == null)
                 throw new ArgumentNullException(nameof(dream));
             _dreams.Add(dream);
         }

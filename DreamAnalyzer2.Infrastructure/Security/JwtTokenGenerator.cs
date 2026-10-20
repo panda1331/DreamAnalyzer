@@ -23,7 +23,7 @@ namespace DreamAnalyzer2.Infrastructure.Security
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var claims = new List<Claim> { 
+            var claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier, id.ToString()),
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Role, role),

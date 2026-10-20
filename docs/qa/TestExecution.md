@@ -34,11 +34,12 @@
 | **TC-24** | Обработка ошибок (битый JSON) | Passed | 400 Bad Request (JSON). | ![tc-24](screens/tc-24.png) |
 | **TC-25** | Доступность Swagger UI | Passed | 200 OK, Swagger открыт. | ![tc-25](screens/tc-25.png) |
 | **TC-26** | Запрос к несуществующему эндпоинту | Passed | 404 Not Found. | ![tc-26](screens/tc-26.png) |
+| **TC-27** | Удаление сна Админом | Passed | 200 OK, сон удален. | ![tc-27](screens/tc-27.png) |
 
 ---
 **Итоговая статистика:**
-* Всего тест-кейсов: 26
-* Passed: 26
+* Всего тест-кейсов: 27
+* Passed: 27
 * Failed: 0
 * Покрытие (T_E): 100%
 * Успешность (T_SP): 100%

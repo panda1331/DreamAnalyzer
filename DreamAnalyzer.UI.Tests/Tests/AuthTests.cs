@@ -66,12 +66,12 @@ namespace DreamAnalyzer.UI.Tests.Tests
             Page.Dialog += async (_, dialog) =>
             {
                 dialogMessage = dialog.Message;
-                await dialog.AcceptAsync(); 
+                await dialog.AcceptAsync();
             };
 
             await loginPage.LoginAsync(_uniqueEmail, "WrongPassword_123");
 
-            await Page.WaitForTimeoutAsync(2000); 
+            await Page.WaitForTimeoutAsync(2000);
             Assert.That(dialogMessage, Does.Contain("Wrong password"), "Должно появиться сообщение о неверном пароле");
 
             Assert.That(Page.Url, Does.Not.Contain("/dreams"));
@@ -95,6 +95,21 @@ namespace DreamAnalyzer.UI.Tests.Tests
 
             var dreamCardTitle = Page.Locator($"h3:has-text('{uniqueDreamTitle}')");
             await Expect(dreamCardTitle).ToBeVisibleAsync();
+        }
+
+        [Test]
+        public async Task SearchDream_FiltersResults()
+        {
+            var loginPage = new LoginPage(Page);
+            await loginPage.GoToAsync(FrontendUrl);
+            await loginPage.LoginAsync(_uniqueEmail, "Test123");
+            await Page.WaitForURLAsync("**/dreams");
+
+            var searchInput = Page.Locator(".search-input");
+            await searchInput.FillAsync("несуществующий_текст_для_поиска");
+
+            var noDreamsText = Page.Locator(".no-dreams"); 
+            await Expect(noDreamsText).ToBeVisibleAsync();
         }
 
         [TearDown]

@@ -36,7 +36,7 @@ namespace DreamAnalyzer2.Application.Services
         {
             var users = await _userRepository.GetAllAsync();
             var responses = new List<UserResponseDto>();
-            foreach (var user in users) 
+            foreach (var user in users)
                 responses.Add(ToResponse(user));
             return responses;
         }
@@ -71,7 +71,7 @@ namespace DreamAnalyzer2.Application.Services
 
             var totalDreams = dreams.Count;
             var averageLength = Math.Round(dreams.Any() ? dreams.Average(d => d.Content.Length) : 0);
-            
+
             var weekdayStats = new Dictionary<string, int>();
             foreach (var dream in dreams)
             {
@@ -80,16 +80,16 @@ namespace DreamAnalyzer2.Application.Services
             }
 
             var moodStats = new Dictionary<string, int>();
-            foreach(var dream in analyzedDreams)
+            foreach (var dream in analyzedDreams)
             {
                 var mood = dream.Analysis.Mood.Name;
                 moodStats[mood] = moodStats.GetValueOrDefault(mood) + 1;
-            } 
+            }
 
             var symbolStats = new Dictionary<string, int>();
-            foreach ( var dream in analyzedDreams)
+            foreach (var dream in analyzedDreams)
             {
-                foreach( var symbol in dream.Analysis.Symbols)
+                foreach (var symbol in dream.Analysis.Symbols)
                 {
                     symbolStats[symbol.Name] = symbolStats.GetValueOrDefault(symbol.Name) + 1;
                 }

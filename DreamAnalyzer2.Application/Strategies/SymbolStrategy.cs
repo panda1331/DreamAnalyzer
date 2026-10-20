@@ -26,7 +26,7 @@ namespace DreamAnalyzer2.Application.Strategies
             var foundSymbols = new List<DreamSymbol>();
             var foundSymbolsNames = new List<string>();
             var interpretations = new List<string>();
-            var moodCounts = new Dictionary<string,  int>();
+            var moodCounts = new Dictionary<string, int>();
 
             var rawWords = content.ToLower().Split(new char[] { ' ', ',', '.', '!', '?', '\n', '\r', ';', ':', '-', '(', ')', '"', '\'' }, StringSplitOptions.RemoveEmptyEntries);
             var stemmedWords = new HashSet<string>();

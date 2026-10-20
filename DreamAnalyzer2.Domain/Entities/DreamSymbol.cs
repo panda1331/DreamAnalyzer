@@ -8,7 +8,7 @@ namespace DreamAnalyzer2.Domain.Entities
     {
         public string Name { get; private set; } = string.Empty;
         public string Interpretation { get; private set; } = string.Empty;
-        public string Mood { get; private set;  } = string.Empty;
+        public string Mood { get; private set; } = string.Empty;
 
         protected DreamSymbol() { }
         public DreamSymbol(string name, string interpretation, string mood)

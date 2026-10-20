@@ -71,8 +71,8 @@ namespace DreamAnalyzer2.Tests.Integration
         }
 
         [Theory]
-        [InlineData("wrong@test.com", "Test123")]     
-        [InlineData("valid@test.com", "WrongPass")]   
+        [InlineData("wrong@test.com", "Test123")]
+        [InlineData("valid@test.com", "WrongPass")]
         public async Task Login_WithInvalidCredentials_ReturnsUnauthorized(
             string email, string password)
         {
